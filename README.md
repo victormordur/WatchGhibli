@@ -6,7 +6,7 @@ This is basically a personal showcase project consisting on an Android app that 
 
 The app is aimed to retrieve a list of Studio Gihbli movies from the cute [Studio Ghibli API](https://ghibliapi.herokuapp.com/), allowing users to add them to a persistent watch-list locally in the app. Additionally, the movies can also be marked as watched, thus being moved from the watch-list into one last section for already watched movies.
 
-As you can see by the current status of the project, all these is still work in progress.
+As you can see by the current status of the project, all this is still work in progress.
 
 
 ## Template Features 🎨
