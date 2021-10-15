@@ -6,10 +6,12 @@ This is basically a personal showcase project consisting on an Android app that 
 
 The app is aimed to retrieve a list of Studio Gihbli movies from the cute [Studio Ghibli API](https://ghibliapi.herokuapp.com/), allowing users to add them to a persistent watch-list locally in the app. Additionally, the movies can also be marked as watched, thus being moved from the watch-list into one last section for already watched movies.
 
+As you can see by the current status of the project, all these is still work in progress.
+
 
 ## Template Features 🎨
 
-The current project is built on top of [kotlin-android-template](https://github.com/cortinico/kotlin-android-template?ref=androidrepo.com), which according to its author _is focused on delivering a project with **static analysis** and **continuous integration** already in place._ and _lets you create an Android/Kotlin project and be up and running in a few seconds_. I also borrowed the descritpion for some of the template-provided features in the following sections, and the list of features this project is re-using: 
+The current project is built on top of [kotlin-android-template](https://github.com/cortinico/kotlin-android-template?ref=androidrepo.com), which according to its author _is focused on delivering a project with **static analysis** and **continuous integration** already in place_ and _lets you create an Android/Kotlin project and be up and running in a few seconds_. I also borrowed the descritpion for some of the template-provided features in the following sections, as well as the list of features this project is re-using: 
 
 - 100% Kotlin-only poject.
 - Sample Espresso, Instrumentation & JUnit tests.
