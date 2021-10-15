@@ -16,10 +16,8 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+rootProject.name = ("WatchGihbli")
 
 include(
-    "app",
-    "library-android",
-    "library-kotlin"
+    "app"
 )
