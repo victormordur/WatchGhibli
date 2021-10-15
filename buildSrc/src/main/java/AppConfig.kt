@@ -1,6 +1,4 @@
-const val PUBLISHING_GROUP = "com.victormordur.gihbli"
-
-object AppCoordinates {
+object AppConfig {
     const val APP_ID = "com.victormordur.gihbli.app"
 
     const val APP_VERSION_NAME = "1.0.0"
