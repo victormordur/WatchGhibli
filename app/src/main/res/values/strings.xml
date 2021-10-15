@@ -4,6 +4,5 @@
     <string name="description">You can compute the meaning of your life using this app.</string>
     <string name="meaning_hint">Insert your age here</string>
     <string name="compute">Compute</string>
-    <string name="notification_title">The Result is:</string>
     <string name="all_computations_result">42</string>
 </resources>
