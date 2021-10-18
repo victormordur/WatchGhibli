@@ -13,6 +13,10 @@ object Versions {
     const val ESPRESSO_CORE = "3.4.0"
     const val JUNIT = "4.13.2"
     const val KTLINT = "0.42.0"
+    const val KOIN = "3.0.2"
+    const val KTOR = "1.6.2"
+    const val TIMBER = "5.0.1"
+    const val SLFJ4 = "1.7.5"
 }
 
 object BuildPluginsVersion {
@@ -27,8 +31,28 @@ object SupportLibs {
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
 }
 
+object Logger {
+    const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
+    const val SLFJ4 = "org.slf4j:slf4j-nop:${Versions.SLFJ4}"
+}
+
+object Koin {
+    const val CORE = "io.insert-koin:koin-core:${Versions.KOIN}"
+    //const val test = "io.insert-koin:koin-test:${Versions.KOIN}"
+    //const val testJunit4 = "io.insert-koin:koin-test-junit4:${Versions.KOIN}"
+    const val ANDROID = "io.insert-koin:koin-android:${Versions.KOIN}"
+}
+
+object Ktor {
+    const val CORE = "io.ktor:ktor-client-core:${Versions.KTOR}"
+    const val ANDROID = "io.ktor:ktor-client-android:${Versions.KTOR}"
+    const val SERIALIZATION = "io.ktor:ktor-client-serialization-jvm:${Versions.KTOR}"
+    const val LOGGER = "io.ktor:ktor-client-logging:${Versions.KTOR}"
+}
+
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
+    const val KTOR_MOCK = "io.ktor:ktor-client-mock:${Versions.KTOR}"
 }
 
 object AndroidTestingLib {

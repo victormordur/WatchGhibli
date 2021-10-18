@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Sdk.COMPILE_SDK_VERSION)
+    compileSdk = Sdk.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdkVersion(Sdk.MIN_SDK_VERSION)
-        targetSdkVersion(Sdk.TARGET_SDK_VERSION)
+        minSdk = Sdk.MIN_SDK_VERSION
+        targetSdk = Sdk.TARGET_SDK_VERSION
 
         applicationId = AppConfig.APP_ID
         versionCode = AppConfig.APP_VERSION_CODE
@@ -35,7 +35,7 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
@@ -60,6 +60,16 @@ dependencies {
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
+
+    implementation(Logger.SLFJ4)
+    implementation(Logger.TIMBER)
+
+    implementation(Koin.CORE)
+    implementation(Koin.ANDROID)
+    implementation(Ktor.CORE)
+    implementation(Ktor.ANDROID)
+    implementation(Ktor.SERIALIZATION)
+    implementation(Ktor.LOGGER)
 
     testImplementation(TestingLib.JUNIT)
 
