@@ -1,9 +1,9 @@
 package com.victormordur.gihbli.app.data.service.remote
 
-import com.victormordur.gihbli.app.data.model.MovieResponse
+import com.victormordur.gihbli.app.data.model.Film
 
 interface RemoteServiceContract {
     interface GihbliService {
-        fun getAllMovies(): List<MovieResponse>
+        suspend fun getAllFilms(): List<Film>
     }
 }

@@ -14,4 +14,5 @@ object Plugins {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${Plugins.KOTLIN}")
     implementation("com.android.tools.build:gradle:${Plugins.AGP}")
+    implementation("org.jetbrains.kotlin:kotlin-serialization:${Plugins.KOTLIN}")
 }

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -72,6 +73,7 @@ dependencies {
     implementation(Ktor.LOGGER)
 
     testImplementation(TestingLib.JUNIT)
+    testImplementation(TestingLib.KTOR_MOCK)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT_KTX)

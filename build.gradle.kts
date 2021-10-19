@@ -4,6 +4,7 @@ plugins {
     id("com.android.application") apply false
     id("com.android.library") apply false
     kotlin("android") apply false
+    id("org.jetbrains.kotlin.plugin.serialization") apply false
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
     id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN

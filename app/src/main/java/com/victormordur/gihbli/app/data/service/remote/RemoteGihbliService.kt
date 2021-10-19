@@ -1,11 +1,20 @@
 package com.victormordur.gihbli.app.data.service.remote
 
-import com.victormordur.gihbli.app.data.model.MovieResponse
+import com.victormordur.gihbli.app.data.model.Film
 import io.ktor.client.HttpClient
+import io.ktor.client.request.get
 
-class RemoteGihbliService(private val httpClient: HttpClient) :
+class RemoteGihbliService(private val client: HttpClient) :
     RemoteServiceContract.GihbliService {
-    override fun getAllMovies(): List<MovieResponse> {
-        TODO("Not yet implemented")
+
+    companion object {
+        const val baseUrl = "https://ghibliapi.herokuapp.com"
+        object Endpoints {
+            const val films = "films"
+        }
+    }
+
+    override suspend fun getAllFilms(): List<Film> {
+        return client.get("$baseUrl/${Endpoints.films}")
     }
 }
