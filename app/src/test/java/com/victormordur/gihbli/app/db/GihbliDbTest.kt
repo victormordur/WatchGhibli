@@ -63,6 +63,20 @@ class GihbliDbTest {
         Assert.assertTrue(updatedFilms.isEmpty())
     }
 
+    @Test
+    fun testInsertAndUpdateWatched() {
+        val queries = Database(driver).filmQueries
+        queries.insertDefaultRows(2)
+        val films = queries.selectAll().executeAsList()
+        Assert.assertEquals(films.size, 2)
+        Assert.assertTrue(films.all { !it.watched })
+        queries.updateWatched(true, "id2")
+        val film1 = queries.selectById("id1").executeAsOne()
+        val film2 = queries.selectById("id2").executeAsOne()
+        Assert.assertFalse(film1.watched)
+        Assert.assertTrue(film2.watched)
+    }
+
     private fun FilmQueries.insertDefaultRows(rows: Int) {
         if (rows > 1) {
             for (i in 1.until(rows + 1)) {
@@ -72,7 +86,8 @@ class GihbliDbTest {
                     "description$i",
                     "date$i",
                     "director$i",
-                    "imageURL$i"
+                    "imageURL$i",
+                    false
                 )
             }
         } else {
