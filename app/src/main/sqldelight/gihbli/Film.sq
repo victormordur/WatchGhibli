@@ -1,0 +1,23 @@
+CREATE TABLE Film (
+    id TEXT NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    releaseDate TEXT NOT NULL,
+    director TEXT NOT NULL,
+    imageURL TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM Film;
+
+selectById:
+SELECT * FROM Film WHERE id = ?;
+
+insert:
+INSERT OR REPLACE INTO Film(id,title,description,releaseDate,director,imageURL) VALUES (?,?,?,?,?,?);
+
+delete:
+DELETE FROM Film WHERE id = ?;
+
+deleteAll:
+DELETE FROM Film;

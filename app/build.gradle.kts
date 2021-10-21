@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.squareup.sqldelight")
 }
 
 android {
@@ -55,7 +57,7 @@ android {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk7"))
+    implementation(Kotlin.android)
 
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
@@ -70,11 +72,23 @@ dependencies {
     implementation(Ktor.ANDROID)
     implementation(Ktor.SERIALIZATION)
     implementation(Ktor.LOGGER)
+    implementation(SqlDelight.ANDROID_DRIVER)
 
     testImplementation(TestingLib.JUNIT)
+    testImplementation(TestingLib.KTOR_MOCK)
+    testImplementation(TestingLib.SQLDELIGHT_JVM)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE_KTX)
+    testImplementation(AndroidTestingLib.ROBOELECTRIC)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT_KTX)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
     androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += listOf(
+        "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+    )
 }
