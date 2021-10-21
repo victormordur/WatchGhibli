@@ -26,9 +26,9 @@ class RemoteGihbliServiceTest {
     @Test
     fun testGetAllFilms() {
         val films = listOf(
-            Film("id1", "title1", "description1", "date1", "director1"),
-            Film("id2", "title2", "description2", "date2", "director2"),
-            Film("id3", "title3", "description3", "date3", "director3")
+            Film("id1", "title1", "description1", "date1", "director1", "imageURL1"),
+            Film("id2", "title2", "description2", "date2", "director2", "imageURL2"),
+            Film("id3", "title3", "description3", "date3", "director3", "imageURL3")
         )
 
         val service = RemoteGihbliService(HttpClient(MockEngine) {

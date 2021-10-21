@@ -15,4 +15,6 @@ data class Film(
     val releaseDate: String,
     @SerialName("director")
     val director: String,
+    @SerialName("image")
+    val imageURL: String,
 )
