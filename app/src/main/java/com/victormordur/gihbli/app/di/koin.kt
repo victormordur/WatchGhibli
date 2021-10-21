@@ -11,7 +11,7 @@ import org.koin.dsl.module
 
 val serviceModule = module {
     single { createHttpClient() }
-    single<RemoteServiceContract.GihbliService> { RemoteGihbliService(get()) }
+    single<RemoteServiceContract.FilmService> { RemoteGihbliService(get()) }
 }
 
 fun getDbModule(application: Application) = module {

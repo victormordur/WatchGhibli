@@ -26,7 +26,7 @@ class KoinModulesTest {
     fun testServiceModuleInstances() {
         val app = koinApplication { modules(serviceModule) }
         val httpClient: HttpClient = app.koin.get()
-        val gihbliService: RemoteServiceContract.GihbliService = app.koin.get()
+        val gihbliService: RemoteServiceContract.FilmService = app.koin.get()
         Assert.assertNotNull(httpClient)
         Assert.assertNotNull(gihbliService)
         Assert.assertTrue(gihbliService is RemoteGihbliService)
