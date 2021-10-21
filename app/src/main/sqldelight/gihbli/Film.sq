@@ -4,7 +4,8 @@ CREATE TABLE Film (
     description TEXT NOT NULL,
     releaseDate TEXT NOT NULL,
     director TEXT NOT NULL,
-    imageURL TEXT NOT NULL
+    imageURL TEXT NOT NULL,
+    watched INTEGER AS Boolean NOT NULL
 );
 
 selectAll:
@@ -14,7 +15,10 @@ selectById:
 SELECT * FROM Film WHERE id = ?;
 
 insert:
-INSERT OR REPLACE INTO Film(id,title,description,releaseDate,director,imageURL) VALUES (?,?,?,?,?,?);
+INSERT OR REPLACE INTO Film(id,title,description,releaseDate,director,imageURL,watched) VALUES (?,?,?,?,?,?,?);
+
+updateWatched:
+UPDATE Film SET watched = ? WHERE id = ?;
 
 delete:
 DELETE FROM Film WHERE id = ?;
