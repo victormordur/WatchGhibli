@@ -86,3 +86,9 @@ dependencies {
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
     androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += listOf(
+        "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+    )
+}

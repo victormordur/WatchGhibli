@@ -31,26 +31,28 @@ class RemoteGihbliServiceTest {
             Film("id3", "title3", "description3", "date3", "director3", "imageURL3")
         )
 
-        val service = RemoteGihbliService(HttpClient(MockEngine) {
-            install(JsonFeature) {
-                serializer = commonJsonSerializer
-            }
-            engine {
-                addHandler { request ->
-                    Assert.assertEquals(request.method, HttpMethod.Get)
-                    Assert.assertEquals(
-                        request.url.toString(),
-                        "https://ghibliapi.herokuapp.com/films"
-                    )
+        val service = RemoteGihbliService(
+            HttpClient(MockEngine) {
+                install(JsonFeature) {
+                    serializer = commonJsonSerializer
+                }
+                engine {
+                    addHandler { request ->
+                        Assert.assertEquals(request.method, HttpMethod.Get)
+                        Assert.assertEquals(
+                            request.url.toString(),
+                            "https://ghibliapi.herokuapp.com/films"
+                        )
 
-                    respond(
-                        content = jsonParser.encodeToString(films),
-                        status = HttpStatusCode.OK,
-                        headers = headersOf(HttpHeaders.ContentType to listOf("application/json"))
-                    )
+                        respond(
+                            content = jsonParser.encodeToString(films),
+                            status = HttpStatusCode.OK,
+                            headers = headersOf(HttpHeaders.ContentType to listOf("application/json"))
+                        )
+                    }
                 }
             }
-        })
+        )
 
         val response = runBlocking {
             service.getAllFilms()

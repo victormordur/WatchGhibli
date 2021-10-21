@@ -9,10 +9,12 @@ import io.ktor.client.features.logging.Logging
 import kotlinx.serialization.json.Json
 import timber.log.Timber
 
-val commonJsonSerializer = KotlinxSerializer(json = Json {
-    isLenient = true
-    ignoreUnknownKeys = true
-})
+val commonJsonSerializer = KotlinxSerializer(
+    json = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
+    }
+)
 
 fun createHttpClient() = HttpClient {
     install(JsonFeature) {
