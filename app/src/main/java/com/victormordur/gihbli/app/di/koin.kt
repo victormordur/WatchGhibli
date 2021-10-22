@@ -6,15 +6,23 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
 import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
 import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
-import com.victormordur.gihbli.app.data.service.remote.createHttpClient
+import com.victormordur.gihbli.app.data.store.DatastoreContract
+import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
+import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
+import io.ktor.client.HttpClient
 import org.koin.dsl.module
 
-val serviceModule = module {
-    single { createHttpClient() }
-    single<RemoteServiceContract.GihbliService> { RemoteGihbliService(get()) }
+fun getServiceModule(httpClient: HttpClient) = module {
+    single { httpClient }
+    single<RemoteServiceContract.FilmService> { RemoteGihbliService(get()) }
 }
 
 fun getDbModule(application: Application) = module {
     single<SqlDriver> { AndroidSqliteDriver(Database.Schema, application) }
     single { Database(get()) }
+}
+
+val datastoreModule = module {
+    single<DatastoreContract.FilmRemote> { FilmRemoteDatastore(get()) }
+    single<DatastoreContract.FilmLocal> { FilmLocalDatastore(get()) }
 }

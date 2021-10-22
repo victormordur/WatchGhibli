@@ -6,6 +6,10 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
 import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
 import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
+import com.victormordur.gihbli.app.data.service.remote.createHttpClient
+import com.victormordur.gihbli.app.data.store.DatastoreContract
+import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
+import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
 import io.ktor.client.HttpClient
 import org.junit.Assert
 import org.junit.Before
@@ -17,6 +21,8 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class KoinModulesTest {
+    private val httpClient = createHttpClient()
+
     @Before
     fun setUp() {
         stopKoin()
@@ -24,9 +30,9 @@ class KoinModulesTest {
 
     @Test
     fun testServiceModuleInstances() {
-        val app = koinApplication { modules(serviceModule) }
+        val app = koinApplication { modules(getServiceModule(httpClient)) }
         val httpClient: HttpClient = app.koin.get()
-        val gihbliService: RemoteServiceContract.GihbliService = app.koin.get()
+        val gihbliService: RemoteServiceContract.FilmService = app.koin.get()
         Assert.assertNotNull(httpClient)
         Assert.assertNotNull(gihbliService)
         Assert.assertTrue(gihbliService is RemoteGihbliService)
@@ -41,5 +47,22 @@ class KoinModulesTest {
         Assert.assertNotNull(sqlDriver)
         Assert.assertTrue(sqlDriver is AndroidSqliteDriver)
         Assert.assertNotNull(database)
+    }
+
+    @Test
+    fun testDatastoreModuleInstances() {
+        val app = koinApplication {
+            modules(
+                getServiceModule(httpClient),
+                getDbModule(ApplicationProvider.getApplicationContext()),
+                datastoreModule
+            )
+        }
+        val remote: DatastoreContract.FilmRemote = app.koin.get()
+        val local: DatastoreContract.FilmLocal = app.koin.get()
+        Assert.assertNotNull(remote)
+        Assert.assertTrue(remote is FilmRemoteDatastore)
+        Assert.assertNotNull(local)
+        Assert.assertTrue(local is FilmLocalDatastore)
     }
 }

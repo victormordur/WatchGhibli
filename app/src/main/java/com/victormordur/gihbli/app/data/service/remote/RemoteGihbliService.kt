@@ -5,7 +5,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 
 class RemoteGihbliService(private val client: HttpClient) :
-    RemoteServiceContract.GihbliService {
+    RemoteServiceContract.FilmService {
 
     companion object {
         const val baseUrl = "https://ghibliapi.herokuapp.com"

@@ -20,6 +20,7 @@ object Versions {
     const val TIMBER = "5.0.1"
     const val SLFJ4 = "1.7.5"
     const val SQLDELIGHT = "1.5.2"
+    const val MOCKK = "1.12.0"
 }
 
 object BuildPluginsVersion {
@@ -62,6 +63,7 @@ object SqlDelight {
 
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
+    const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
     const val KTOR_MOCK = "io.ktor:ktor-client-mock:${Versions.KTOR}"
     const val SQLDELIGHT_JVM = "com.squareup.sqldelight:sqlite-driver:${Versions.SQLDELIGHT}"
 }

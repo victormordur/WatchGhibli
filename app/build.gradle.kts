@@ -75,6 +75,7 @@ dependencies {
     implementation(SqlDelight.ANDROID_DRIVER)
 
     testImplementation(TestingLib.JUNIT)
+    testImplementation(TestingLib.MOCKK)
     testImplementation(TestingLib.KTOR_MOCK)
     testImplementation(TestingLib.SQLDELIGHT_JVM)
     testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
