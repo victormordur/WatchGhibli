@@ -6,6 +6,7 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
 import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
 import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
+import com.victormordur.gihbli.app.data.service.remote.createHttpClient
 import com.victormordur.gihbli.app.data.store.DatastoreContract
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
@@ -20,6 +21,8 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class KoinModulesTest {
+    private val httpClient = createHttpClient()
+
     @Before
     fun setUp() {
         stopKoin()
@@ -27,7 +30,7 @@ class KoinModulesTest {
 
     @Test
     fun testServiceModuleInstances() {
-        val app = koinApplication { modules(serviceModule) }
+        val app = koinApplication { modules(getServiceModule(httpClient)) }
         val httpClient: HttpClient = app.koin.get()
         val gihbliService: RemoteServiceContract.FilmService = app.koin.get()
         Assert.assertNotNull(httpClient)
@@ -50,7 +53,7 @@ class KoinModulesTest {
     fun testDatastoreModuleInstances() {
         val app = koinApplication {
             modules(
-                serviceModule,
+                getServiceModule(httpClient),
                 getDbModule(ApplicationProvider.getApplicationContext()),
                 datastoreModule
             )

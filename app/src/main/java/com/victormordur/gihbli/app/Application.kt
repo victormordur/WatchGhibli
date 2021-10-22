@@ -1,13 +1,15 @@
 package com.victormordur.gihbli.app
 
 import android.app.Application
+import com.victormordur.gihbli.app.data.service.remote.createHttpClient
 import com.victormordur.gihbli.app.di.datastoreModule
 import com.victormordur.gihbli.app.di.getDbModule
-import com.victormordur.gihbli.app.di.serviceModule
+import com.victormordur.gihbli.app.di.getServiceModule
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
 class Application : Application() {
+    private val httpClient by lazy { createHttpClient() }
 
     override fun onCreate() {
         super.onCreate()
@@ -17,7 +19,7 @@ class Application : Application() {
 
     private fun initKoin() {
         startKoin {
-            modules(serviceModule, getDbModule(this@Application), datastoreModule)
+            modules(getServiceModule(httpClient), getDbModule(this@Application), datastoreModule)
         }
     }
     private fun initTimber() {
