@@ -1,6 +1,5 @@
-package com.victormordur.gihbli.app.model
+package com.victormordur.gihbli.app.data.model
 
-import com.victormordur.gihbli.app.data.model.Film
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.Assert

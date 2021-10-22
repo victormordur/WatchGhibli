@@ -1,9 +1,7 @@
-package com.victormordur.gihbli.app.store
+package com.victormordur.gihbli.app.data.store
 
 import com.victormordur.gihbli.app.Database
 import com.victormordur.gihbli.app.data.model.Film
-import com.victormordur.gihbli.app.data.store.DBFilm
-import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
 import gihbli.FilmQueries
 import io.mockk.Runs
 import io.mockk.coEvery
