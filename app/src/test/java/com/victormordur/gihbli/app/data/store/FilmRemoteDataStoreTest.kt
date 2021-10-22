@@ -6,6 +6,8 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
 import io.mockk.mockk
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert
@@ -35,10 +37,11 @@ class FilmRemoteDataStoreTest {
     @Test
     fun testGetAllFilms() {
         coEvery { service.getAllFilms() } returns films
-        val result = runBlocking {
-            datastore.getAllFilms()
+        runBlocking {
+            datastore.getAllFilms().mapLatest {
+                Assert.assertEquals(it, films)
+                coVerify { service.getAllFilms() }
+            }.launchIn(this)
         }
-        Assert.assertEquals(result, films)
-        coVerify { service.getAllFilms() }
     }
 }

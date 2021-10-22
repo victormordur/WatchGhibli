@@ -57,7 +57,9 @@ android {
 }
 
 dependencies {
-    implementation(Kotlin.android)
+    implementation(Kotlin.ANDROID)
+
+    implementation(Coroutines.ANDROID)
 
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
@@ -73,6 +75,7 @@ dependencies {
     implementation(Ktor.SERIALIZATION)
     implementation(Ktor.LOGGER)
     implementation(SqlDelight.ANDROID_DRIVER)
+    implementation(SqlDelight.COROUTINES_EXT)
 
     testImplementation(TestingLib.JUNIT)
     testImplementation(TestingLib.MOCKK)
@@ -90,6 +93,7 @@ dependencies {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += listOf(
-        "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+        "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
     )
 }
