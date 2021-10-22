@@ -17,13 +17,15 @@ class FilmRemoteDataStoreTest {
     private val datastore = FilmRemoteDatastore(service)
 
     private val films = listOf(1, 2, 3, 4, 5).map {
-        Film("id$it",
-        "title$it",
-        "description$it",
-        "date$it",
-        "director$it",
-        "imageURL$it",
-        false)
+        Film(
+            "id$it",
+            "title$it",
+            "description$it",
+            "date$it",
+            "director$it",
+            "imageURL$it",
+            false
+        )
     }
 
     @After

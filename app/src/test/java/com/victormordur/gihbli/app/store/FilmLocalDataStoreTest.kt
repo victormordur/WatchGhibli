@@ -25,23 +25,27 @@ class FilmLocalDataStoreTest {
 
     private val itemList = listOf(1, 2, 3, 4, 5)
     private val dbFilms = itemList.map {
-        DBFilm("id$it",
+        DBFilm(
+            "id$it",
             "title$it",
             "description$it",
             "date$it",
             "director$it",
             "imageURL$it",
-            false)
+            false
+        )
     }
 
     private val films = itemList.map {
-        Film("id$it",
+        Film(
+            "id$it",
             "title$it",
             "description$it",
             "date$it",
             "director$it",
             "imageURL$it",
-            false)
+            false
+        )
     }
 
     @Before
