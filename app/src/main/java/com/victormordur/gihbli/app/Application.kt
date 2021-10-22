@@ -1,6 +1,7 @@
 package com.victormordur.gihbli.app
 
 import android.app.Application
+import com.victormordur.gihbli.app.di.datastoreModule
 import com.victormordur.gihbli.app.di.getDbModule
 import com.victormordur.gihbli.app.di.serviceModule
 import org.koin.core.context.startKoin
@@ -16,7 +17,7 @@ class Application : Application() {
 
     private fun initKoin() {
         startKoin {
-            modules(serviceModule, getDbModule(this@Application))
+            modules(serviceModule, getDbModule(this@Application), datastoreModule)
         }
     }
     private fun initTimber() {
