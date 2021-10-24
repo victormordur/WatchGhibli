@@ -81,6 +81,7 @@ dependencies {
     testImplementation(TestingLib.MOCKK)
     testImplementation(TestingLib.KTOR_MOCK)
     testImplementation(TestingLib.SQLDELIGHT_JVM)
+    testImplementation(TestingLib.COROUTINES)
     testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
     testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE_KTX)
     testImplementation(AndroidTestingLib.ROBOELECTRIC)

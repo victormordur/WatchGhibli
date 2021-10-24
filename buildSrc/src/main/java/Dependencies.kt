@@ -72,6 +72,7 @@ object TestingLib {
     const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
     const val KTOR_MOCK = "io.ktor:ktor-client-mock:${Versions.KTOR}"
     const val SQLDELIGHT_JVM = "com.squareup.sqldelight:sqlite-driver:${Versions.SQLDELIGHT}"
+    const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
 }
 
 object AndroidTestingLib {
