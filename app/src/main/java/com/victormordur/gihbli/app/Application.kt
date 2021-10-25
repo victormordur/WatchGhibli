@@ -1,10 +1,11 @@
 package com.victormordur.gihbli.app
 
 import android.app.Application
+import com.victormordur.gihbli.app.data.di.datastoreModule
+import com.victormordur.gihbli.app.data.di.getDbModule
+import com.victormordur.gihbli.app.data.di.getServiceModule
+import com.victormordur.gihbli.app.data.di.repositoryModule
 import com.victormordur.gihbli.app.data.service.remote.createHttpClient
-import com.victormordur.gihbli.app.di.datastoreModule
-import com.victormordur.gihbli.app.di.getDbModule
-import com.victormordur.gihbli.app.di.getServiceModule
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
@@ -19,7 +20,12 @@ class Application : Application() {
 
     private fun initKoin() {
         startKoin {
-            modules(getServiceModule(httpClient), getDbModule(this@Application), datastoreModule)
+            modules(
+                getServiceModule(httpClient),
+                getDbModule(this@Application),
+                datastoreModule,
+                repositoryModule
+            )
         }
     }
     private fun initTimber() {

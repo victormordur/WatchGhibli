@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.db
+package com.victormordur.gihbli.app.data.db
 
 import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import com.victormordur.gihbli.app.Database

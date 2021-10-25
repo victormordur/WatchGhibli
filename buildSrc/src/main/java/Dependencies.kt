@@ -5,7 +5,8 @@ object Sdk {
 }
 
 object Versions {
-    const val KOTLIN = "1.5.21"
+    const val KOTLIN = "1.5.30"
+    const val COROUTINES = "1.5.2"
     const val ANDROIDX_TEST_EXT = "1.1.3"
     const val ANDROIDX_TEST = "1.4.0"
     const val APPCOMPAT = "1.3.0"
@@ -31,7 +32,11 @@ object BuildPluginsVersion {
 }
 
 object Kotlin {
-    const val android = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN}"
+    const val ANDROID = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.KOTLIN}"
+}
+
+object Coroutines {
+    const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
 }
 
 object SupportLibs {
@@ -59,6 +64,7 @@ object Ktor {
 
 object SqlDelight {
     const val ANDROID_DRIVER = "com.squareup.sqldelight:android-driver:${Versions.SQLDELIGHT}"
+    const val COROUTINES_EXT = "com.squareup.sqldelight:coroutines-extensions:${Versions.SQLDELIGHT}"
 }
 
 object TestingLib {
@@ -66,6 +72,7 @@ object TestingLib {
     const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
     const val KTOR_MOCK = "io.ktor:ktor-client-mock:${Versions.KTOR}"
     const val SQLDELIGHT_JVM = "com.squareup.sqldelight:sqlite-driver:${Versions.SQLDELIGHT}"
+    const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
 }
 
 object AndroidTestingLib {
