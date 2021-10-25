@@ -12,6 +12,13 @@ import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
 import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
+import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
+import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
+import com.victormordur.gihbli.app.domain.usecase.simple.AddToUser
+import com.victormordur.gihbli.app.domain.usecase.simple.MarkUserToBeWatched
+import com.victormordur.gihbli.app.domain.usecase.simple.MarkUserWatched
+import com.victormordur.gihbli.app.domain.usecase.simple.RemoveFromUser
 import io.ktor.client.HttpClient
 import org.junit.Assert
 import org.junit.Before
@@ -32,7 +39,8 @@ class KoinModulesTest {
         getServiceModule(httpClient),
         getDbModule(ApplicationProvider.getApplicationContext()),
         datastoreModule,
-        repositoryModule
+        repositoryModule,
+        useCaseModule
     )
 
     @Before
@@ -78,5 +86,24 @@ class KoinModulesTest {
         val repository: FilmRepositoryContract = app.koin.get()
         Assert.assertNotNull(repository)
         Assert.assertTrue(repository is FilmRepository)
+    }
+
+    @Test
+    fun testUseCaseModuleInstances() {
+        val app = startKoin { modules(koinModules) }
+        val getCatalogueFiltered: GetCatalogueFilteredByUserFilms = app.koin.get()
+        val getUserToBeWatched: GetUserToBeWatchedFilms = app.koin.get()
+        val getUserWatched: GetUserWatchedFilms = app.koin.get()
+        val addToUser: AddToUser = app.koin.get()
+        val removeFromUser: RemoveFromUser = app.koin.get()
+        val markUserToBeWatched: MarkUserToBeWatched = app.koin.get()
+        val markUserWatched: MarkUserWatched = app.koin.get()
+        Assert.assertNotNull(getCatalogueFiltered)
+        Assert.assertNotNull(getUserToBeWatched)
+        Assert.assertNotNull(getUserWatched)
+        Assert.assertNotNull(addToUser)
+        Assert.assertNotNull(removeFromUser)
+        Assert.assertNotNull(markUserToBeWatched)
+        Assert.assertNotNull(markUserWatched)
     }
 }
