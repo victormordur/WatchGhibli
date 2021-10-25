@@ -10,18 +10,30 @@ import com.victormordur.gihbli.app.data.service.remote.createHttpClient
 import com.victormordur.gihbli.app.data.store.DatastoreContract
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
+import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import io.ktor.client.HttpClient
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
-import org.koin.dsl.koinApplication
+import org.koin.core.module.Module
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE)
 class KoinModulesTest {
+
     private val httpClient = createHttpClient()
+    private val koinModules: List<Module> = listOf(
+        getServiceModule(httpClient),
+        getDbModule(ApplicationProvider.getApplicationContext()),
+        datastoreModule,
+        repositoryModule
+    )
 
     @Before
     fun setUp() {
@@ -30,7 +42,7 @@ class KoinModulesTest {
 
     @Test
     fun testServiceModuleInstances() {
-        val app = koinApplication { modules(getServiceModule(httpClient)) }
+        val app = startKoin { modules(koinModules) }
         val httpClient: HttpClient = app.koin.get()
         val gihbliService: RemoteServiceContract.FilmService = app.koin.get()
         Assert.assertNotNull(httpClient)
@@ -41,7 +53,7 @@ class KoinModulesTest {
     @Test
     fun testDbModuleInstances() {
         val app =
-            koinApplication { modules(getDbModule(ApplicationProvider.getApplicationContext())) }
+            startKoin { modules(koinModules) }
         val sqlDriver: SqlDriver = app.koin.get()
         val database: Database = app.koin.get()
         Assert.assertNotNull(sqlDriver)
@@ -51,18 +63,20 @@ class KoinModulesTest {
 
     @Test
     fun testDatastoreModuleInstances() {
-        val app = koinApplication {
-            modules(
-                getServiceModule(httpClient),
-                getDbModule(ApplicationProvider.getApplicationContext()),
-                datastoreModule
-            )
-        }
+        val app = startKoin { modules(koinModules) }
         val remote: DatastoreContract.FilmRemote = app.koin.get()
         val local: DatastoreContract.FilmLocal = app.koin.get()
         Assert.assertNotNull(remote)
         Assert.assertTrue(remote is FilmRemoteDatastore)
         Assert.assertNotNull(local)
         Assert.assertTrue(local is FilmLocalDatastore)
+    }
+
+    @Test
+    fun testRepositoryModuleInstances() {
+        val app = startKoin { modules(koinModules) }
+        val repository: FilmRepositoryContract = app.koin.get()
+        Assert.assertNotNull(repository)
+        Assert.assertTrue(repository is FilmRepository)
     }
 }

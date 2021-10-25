@@ -9,6 +9,8 @@ import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
 import com.victormordur.gihbli.app.data.store.DatastoreContract
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
+import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import io.ktor.client.HttpClient
 import org.koin.dsl.module
 
@@ -25,4 +27,8 @@ fun getDbModule(application: Application) = module {
 val datastoreModule = module {
     single<DatastoreContract.FilmRemote> { FilmRemoteDatastore(get()) }
     single<DatastoreContract.FilmLocal> { FilmLocalDatastore(get()) }
+}
+
+val repositoryModule = module {
+    single<FilmRepositoryContract> { FilmRepository(get(), get()) }
 }
