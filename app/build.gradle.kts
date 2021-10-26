@@ -64,6 +64,10 @@ dependencies {
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
+    implementation(SupportLibs.ANDROIDX_ACTIVITY_KTX)
+    implementation(SupportLibs.ANDROIDX_LIFECYCLE_RUNTIME)
+    implementation(SupportLibs.ANDROIDX_LIFECYCLE_LIVEDATA)
+    implementation(SupportLibs.ANDROIDX_LIFECYCLE_VIEWMODEL)
 
     implementation(Logger.SLFJ4)
     implementation(Logger.TIMBER)
