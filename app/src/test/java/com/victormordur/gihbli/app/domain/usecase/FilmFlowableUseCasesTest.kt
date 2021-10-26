@@ -57,7 +57,7 @@ class FilmFlowableUseCasesTest {
         coEvery { repository.getCatalogueFilms() } returns flowCatalogue
         coEvery { repository.getUserFilms() } returns flowUser
         runBlocking {
-            getCatalogueFiltered.execute().mapLatest {
+            getCatalogueFiltered.requestFlow().mapLatest {
                 Assert.assertEquals(it, filmsCatalogue.subList(0, 2))
                 coVerify { repository.getCatalogueFilms() }
                 coVerify { repository.getUserFilms() }
@@ -70,7 +70,7 @@ class FilmFlowableUseCasesTest {
         val flowUser = flowOf(filmsUserSomeWatched)
         coEvery { repository.getUserFilms() } returns flowUser
         runBlocking {
-            getUserToBeWatched.execute().mapLatest {
+            getUserToBeWatched.requestFlow().mapLatest {
                 Assert.assertEquals(it, listOf(filmsUserSomeWatched[1]))
                 coVerify { repository.getUserFilms() }
             }.launchIn(this)
@@ -82,7 +82,7 @@ class FilmFlowableUseCasesTest {
         val flowUser = flowOf(filmsUserSomeWatched)
         coEvery { repository.getUserFilms() } returns flowUser
         runBlocking {
-            getUserWatched.execute().mapLatest {
+            getUserWatched.requestFlow().mapLatest {
                 Assert.assertEquals(it, listOf(filmsUserSomeWatched[0], filmsUserSomeWatched[2]))
                 coVerify { repository.getUserFilms() }
             }.launchIn(this)

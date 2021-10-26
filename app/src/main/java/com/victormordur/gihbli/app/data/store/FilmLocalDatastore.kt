@@ -7,7 +7,6 @@ import com.victormordur.gihbli.app.data.model.Film
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 
 typealias DBFilm = gihbli.Film

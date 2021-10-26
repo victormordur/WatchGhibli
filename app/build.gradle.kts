@@ -88,6 +88,7 @@ dependencies {
     testImplementation(TestingLib.COROUTINES)
     testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
     testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE_KTX)
+    testImplementation(AndroidTestingLib.ANDROIDX_ARCH_CORE_TEST)
     testImplementation(AndroidTestingLib.ROBOELECTRIC)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)

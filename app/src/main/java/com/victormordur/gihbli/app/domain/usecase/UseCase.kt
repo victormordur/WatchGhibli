@@ -14,5 +14,5 @@ interface ParameterizedUseCase<Parameter : Any, ReturnType> {
 }
 
 interface FlowableUseCase<ReturnType> {
-    fun execute(): Flow<ReturnType>
+    fun requestFlow(): Flow<ReturnType>
 }

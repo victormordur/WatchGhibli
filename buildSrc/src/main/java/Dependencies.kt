@@ -14,6 +14,7 @@ object Versions {
     const val CORE_KTX = "1.6.0"
     const val ACTIVITY = "1.3.1"
     const val LIFECYCLE = "2.3.1"
+    const val ARCH_CORE = "2.1.0"
     const val ESPRESSO_CORE = "3.4.0"
     const val ROBOELECTRIC = "4.6"
     const val JUNIT = "4.13.2"
@@ -88,6 +89,7 @@ object AndroidTestingLib {
     const val ANDROIDX_TEST_CORE_KTX = "androidx.test:core-ktx:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_EXT_JUNIT = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT}"
     const val ANDROIDX_TEST_EXT_JUNIT_KTX = "androidx.test.ext:junit-ktx:${Versions.ANDROIDX_TEST_EXT}"
+    const val ANDROIDX_ARCH_CORE_TEST = "androidx.arch.core:core-testing:${Versions.ARCH_CORE}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
     const val ROBOELECTRIC = "org.robolectric:robolectric:${Versions.ROBOELECTRIC}"
 }
