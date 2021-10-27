@@ -4,10 +4,11 @@ import com.victormordur.gihbli.app.data.model.Film
 import kotlinx.coroutines.flow.Flow
 
 interface FilmRepositoryContract {
-    fun getCatalogueFilms(): Flow<List<Film>>
-    fun getUserFilms(): Flow<List<Film>>
-    fun addToUser(film: Film)
-    fun removeFromUser(id: String)
-    fun markWatched(id: String)
-    fun markToBeWatched(id: String)
+    fun getCatalogueFilmsFlow(): Flow<List<Film>>
+    suspend fun refreshCatalogueFilms()
+    fun getUserFilmsFlow(): Flow<List<Film>>
+    suspend fun addToUser(film: Film)
+    suspend fun removeFromUser(id: String)
+    suspend fun markWatched(id: String)
+    suspend fun markToBeWatched(id: String)
 }

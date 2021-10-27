@@ -10,8 +10,8 @@ class GetCatalogueFilteredByUserFilms(private val repository: FilmRepositoryCont
     FlowableUseCase<List<Film>> {
     override fun requestFlow() =
         combine(
-            repository.getCatalogueFilms().distinctUntilChanged(),
-            repository.getUserFilms().distinctUntilChanged()
+            repository.getCatalogueFilmsFlow().distinctUntilChanged(),
+            repository.getUserFilmsFlow().distinctUntilChanged()
         ) { catalogue, user ->
             catalogue.mapNotNull {
                 if (user.contains(it)) {

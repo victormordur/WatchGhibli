@@ -15,7 +15,7 @@ class FilmLocalDatastore(
     private val database: Database,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : DatastoreContract.FilmLocal {
-    override fun getAll(): Flow<List<Film>> {
+    override fun getAllFlow(): Flow<List<Film>> {
         return database.filmQueries.selectAll().asFlow().mapToList(dispatcher).mapLatest { list ->
             list.map { it.toFilm() }
         }

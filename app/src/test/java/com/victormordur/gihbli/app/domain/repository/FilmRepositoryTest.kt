@@ -9,6 +9,7 @@ import io.mockk.confirmVerified
 import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
@@ -38,26 +39,37 @@ class FilmRepositoryTest {
     @Test
     fun testGetCatalogueFilms() {
         val testFlow = flowOf(films)
-        coEvery { remoteDatastore.getAllFilms() } returns testFlow
-        val response = repository.getCatalogueFilms()
+        coEvery { remoteDatastore.getAllFilmsFlow() } returns testFlow
+        val response = repository.getCatalogueFilmsFlow()
         Assert.assertEquals(response, testFlow)
-        coVerify { remoteDatastore.getAllFilms() }
+        coVerify { remoteDatastore.getAllFilmsFlow() }
+    }
+
+    @Test
+    fun testRefreshCatalogueFilms() {
+        coEvery { remoteDatastore.refreshFilms() } just Runs
+        runBlocking {
+            repository.refreshCatalogueFilms()
+        }
+        coVerify { remoteDatastore.refreshFilms() }
     }
 
     @Test
     fun testGetUserFilms() {
         val testFlow = flowOf(films)
-        coEvery { localDatastore.getAll() } returns testFlow
-        val response = repository.getUserFilms()
+        coEvery { localDatastore.getAllFlow() } returns testFlow
+        val response = repository.getUserFilmsFlow()
         Assert.assertEquals(response, testFlow)
-        coVerify { localDatastore.getAll() }
+        coVerify { localDatastore.getAllFlow() }
     }
 
     @Test
     fun testAddToUser() {
         val film = Film("id", "title", "description", "date", "director", "imageURL", false)
         coEvery { localDatastore.add(film) } just Runs
-        repository.addToUser(film)
+        runBlocking {
+            repository.addToUser(film)
+        }
         coVerify { localDatastore.add(film) }
     }
 
@@ -65,7 +77,9 @@ class FilmRepositoryTest {
     fun testRemoveFromUser() {
         val id = "id"
         coEvery { localDatastore.remove(id) } just Runs
-        repository.removeFromUser(id)
+        runBlocking {
+            repository.removeFromUser(id)
+        }
         coVerify { localDatastore.remove(id) }
     }
 
@@ -73,7 +87,9 @@ class FilmRepositoryTest {
     fun testMarkWatched() {
         val id = "id"
         coEvery { localDatastore.updateWatched(true, id) } just Runs
-        repository.markWatched(id)
+        runBlocking {
+            repository.markWatched(id)
+        }
         coVerify { localDatastore.updateWatched(true, id) }
     }
 
@@ -81,7 +97,9 @@ class FilmRepositoryTest {
     fun testMarkToBeWatched() {
         val id = "id"
         coEvery { localDatastore.updateWatched(false, id) } just Runs
-        repository.markToBeWatched(id)
+        runBlocking {
+            repository.markToBeWatched(id)
+        }
         coVerify { localDatastore.updateWatched(false, id) }
     }
 }

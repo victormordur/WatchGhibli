@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.mapLatest
 abstract class GetUserFilteredFilms(private val repository: FilmRepositoryContract) :
     FlowableUseCase<List<Film>> {
     override fun requestFlow() =
-        repository.getUserFilms().mapLatest { it.filter { film -> evaluateCondition(film) } }
+        repository.getUserFilmsFlow().mapLatest { it.filter { film -> evaluateCondition(film) } }
 
     abstract fun evaluateCondition(film: Film): Boolean
 }

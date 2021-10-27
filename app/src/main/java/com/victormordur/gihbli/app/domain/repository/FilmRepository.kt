@@ -8,27 +8,31 @@ class FilmRepository(
     private val remote: DatastoreContract.FilmRemote,
     private val local: DatastoreContract.FilmLocal
 ) : FilmRepositoryContract {
-    override fun getCatalogueFilms(): Flow<List<Film>> {
-        return remote.getAllFilms()
+    override fun getCatalogueFilmsFlow(): Flow<List<Film>> {
+        return remote.getAllFilmsFlow()
     }
 
-    override fun getUserFilms(): Flow<List<Film>> {
-        return local.getAll()
+    override suspend fun refreshCatalogueFilms() {
+        remote.refreshFilms()
     }
 
-    override fun addToUser(film: Film) {
+    override fun getUserFilmsFlow(): Flow<List<Film>> {
+        return local.getAllFlow()
+    }
+
+    override suspend fun addToUser(film: Film) {
         local.add(film)
     }
 
-    override fun removeFromUser(id: String) {
+    override suspend fun removeFromUser(id: String) {
         local.remove(id)
     }
 
-    override fun markWatched(id: String) {
+    override suspend fun markWatched(id: String) {
         local.updateWatched(true, id)
     }
 
-    override fun markToBeWatched(id: String) {
+    override suspend fun markToBeWatched(id: String) {
         local.updateWatched(false, id)
     }
 }

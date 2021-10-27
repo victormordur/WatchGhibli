@@ -5,10 +5,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface DatastoreContract {
     interface FilmRemote {
-        fun getAllFilms(): Flow<List<Film>>
+        fun getAllFilmsFlow(): Flow<List<Film>>
+        suspend fun refreshFilms()
     }
     interface FilmLocal {
-        fun getAll(): Flow<List<Film>>
+        fun getAllFlow(): Flow<List<Film>>
         fun add(film: Film)
         fun remove(id: String)
         fun updateWatched(watched: Boolean, id: String)

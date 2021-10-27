@@ -54,13 +54,13 @@ class FilmFlowableUseCasesTest {
     fun testCatalogueFilteredByUser() {
         val flowCatalogue = flowOf(filmsCatalogue)
         val flowUser = flowOf(filmsUser)
-        coEvery { repository.getCatalogueFilms() } returns flowCatalogue
-        coEvery { repository.getUserFilms() } returns flowUser
+        coEvery { repository.getCatalogueFilmsFlow() } returns flowCatalogue
+        coEvery { repository.getUserFilmsFlow() } returns flowUser
         runBlocking {
             getCatalogueFiltered.requestFlow().mapLatest {
                 Assert.assertEquals(it, filmsCatalogue.subList(0, 2))
-                coVerify { repository.getCatalogueFilms() }
-                coVerify { repository.getUserFilms() }
+                coVerify { repository.getCatalogueFilmsFlow() }
+                coVerify { repository.getUserFilmsFlow() }
             }.launchIn(this)
         }
     }
@@ -68,11 +68,11 @@ class FilmFlowableUseCasesTest {
     @Test
     fun testUserToBeWatched() {
         val flowUser = flowOf(filmsUserSomeWatched)
-        coEvery { repository.getUserFilms() } returns flowUser
+        coEvery { repository.getUserFilmsFlow() } returns flowUser
         runBlocking {
             getUserToBeWatched.requestFlow().mapLatest {
                 Assert.assertEquals(it, listOf(filmsUserSomeWatched[1]))
-                coVerify { repository.getUserFilms() }
+                coVerify { repository.getUserFilmsFlow() }
             }.launchIn(this)
         }
     }
@@ -80,11 +80,11 @@ class FilmFlowableUseCasesTest {
     @Test
     fun testUserWatched() {
         val flowUser = flowOf(filmsUserSomeWatched)
-        coEvery { repository.getUserFilms() } returns flowUser
+        coEvery { repository.getUserFilmsFlow() } returns flowUser
         runBlocking {
             getUserWatched.requestFlow().mapLatest {
                 Assert.assertEquals(it, listOf(filmsUserSomeWatched[0], filmsUserSomeWatched[2]))
-                coVerify { repository.getUserFilms() }
+                coVerify { repository.getUserFilmsFlow() }
             }.launchIn(this)
         }
     }
