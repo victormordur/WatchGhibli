@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.preesentation
+package com.victormordur.gihbli.app.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.victormordur.gihbli.app.data.model.Film
@@ -6,7 +6,6 @@ import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
-import com.victormordur.gihbli.app.presentation.ViewState
 import com.victormordur.gihbli.app.presentation.list.FilmListViewModel
 import io.mockk.Runs
 import io.mockk.coEvery
