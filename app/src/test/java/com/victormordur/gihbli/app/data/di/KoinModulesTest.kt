@@ -15,6 +15,7 @@ import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
+import com.victormordur.gihbli.app.presentation.list.FilmListViewModel
 import io.ktor.client.HttpClient
 import org.junit.Assert
 import org.junit.Before
@@ -36,7 +37,8 @@ class KoinModulesTest {
         getDbModule(ApplicationProvider.getApplicationContext()),
         datastoreModule,
         repositoryModule,
-        useCaseModule
+        useCaseModule,
+        viewModelModule
     )
 
     @Before
@@ -93,5 +95,12 @@ class KoinModulesTest {
         Assert.assertNotNull(getCatalogueFiltered)
         Assert.assertNotNull(getUserToBeWatched)
         Assert.assertNotNull(getUserWatched)
+    }
+
+    @Test
+    fun testViewModelModuleInstance() {
+        val app = startKoin { modules(koinModules) }
+        val filmListViewModel: FilmListViewModel = app.koin.get()
+        Assert.assertNotNull(filmListViewModel)
     }
 }
