@@ -14,7 +14,6 @@ import io.mockk.mockk
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -70,17 +69,15 @@ class FilmLocalDataStoreTest {
         coEvery { queries.selectAll() } returns query
         coEvery { query.addListener(any()) } just Runs
         coEvery { query.executeAsList() } returns dbFilms
-        runBlocking {
-            datastore.getAll().mapLatest {
-                Assert.assertEquals(it, films)
-                coVerifySequence {
-                    database.filmQueries
-                    queries.selectAll()
-                    query.addListener(any())
-                    query.executeAsList()
-                }
-            }.launchIn(CoroutineScope(testCoroutineDispatcher))
-        }
+        datastore.getAllFlow().mapLatest {
+            Assert.assertEquals(it, films)
+            coVerifySequence {
+                database.filmQueries
+                queries.selectAll()
+                query.addListener(any())
+                query.executeAsList()
+            }
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
         testCoroutineDispatcher.advanceUntilIdle()
     }
 

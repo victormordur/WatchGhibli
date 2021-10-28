@@ -14,11 +14,9 @@ import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
-import com.victormordur.gihbli.app.domain.usecase.simple.AddToUser
-import com.victormordur.gihbli.app.domain.usecase.simple.MarkUserToBeWatched
-import com.victormordur.gihbli.app.domain.usecase.simple.MarkUserWatched
-import com.victormordur.gihbli.app.domain.usecase.simple.RemoveFromUser
+import com.victormordur.gihbli.app.presentation.list.FilmListViewModel
 import io.ktor.client.HttpClient
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 fun getServiceModule(httpClient: HttpClient) = module {
@@ -44,8 +42,8 @@ val useCaseModule = module {
     single { GetCatalogueFilteredByUserFilms(get()) }
     single { GetUserToBeWatchedFilms(get()) }
     single { GetUserWatchedFilms(get()) }
-    single { AddToUser(get()) }
-    single { RemoveFromUser(get()) }
-    single { MarkUserToBeWatched(get()) }
-    single { MarkUserWatched(get()) }
+}
+
+val viewModelModule = module {
+    viewModel { FilmListViewModel(get(), get(), get(), get()) }
 }

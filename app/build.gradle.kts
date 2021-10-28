@@ -64,6 +64,10 @@ dependencies {
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
+    implementation(SupportLibs.ANDROIDX_ACTIVITY_KTX)
+    implementation(SupportLibs.ANDROIDX_LIFECYCLE_RUNTIME)
+    implementation(SupportLibs.ANDROIDX_LIFECYCLE_LIVEDATA)
+    implementation(SupportLibs.ANDROIDX_LIFECYCLE_VIEWMODEL)
 
     implementation(Logger.SLFJ4)
     implementation(Logger.TIMBER)
@@ -84,6 +88,7 @@ dependencies {
     testImplementation(TestingLib.COROUTINES)
     testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
     testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE_KTX)
+    testImplementation(AndroidTestingLib.ANDROIDX_ARCH_CORE_TEST)
     testImplementation(AndroidTestingLib.ROBOELECTRIC)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)

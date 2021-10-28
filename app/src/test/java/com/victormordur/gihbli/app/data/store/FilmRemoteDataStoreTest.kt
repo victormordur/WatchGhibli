@@ -6,16 +6,20 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
 import io.mockk.mockk
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
 
 class FilmRemoteDataStoreTest {
+    private val testCoroutineDispatcher = TestCoroutineDispatcher()
+
     private val service: RemoteServiceContract.FilmService = mockk()
-    private val datastore = FilmRemoteDatastore(service)
+    private val datastore = FilmRemoteDatastore(service, testCoroutineDispatcher)
 
     private val films = listOf(1, 2, 3, 4, 5).map {
         Film(
@@ -35,13 +39,26 @@ class FilmRemoteDataStoreTest {
     }
 
     @Test
-    fun testGetAllFilms() {
+    fun testGetAllFilms() = testCoroutineDispatcher.runBlockingTest {
         coEvery { service.getAllFilms() } returns films
-        runBlocking {
-            datastore.getAllFilms().mapLatest {
-                Assert.assertEquals(it, films)
-                coVerify { service.getAllFilms() }
-            }.launchIn(this)
-        }
+        datastore.getAllFilmsFlow().onEach {
+            Assert.assertEquals(it, films)
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
+        testCoroutineDispatcher.advanceUntilIdle()
+        coVerify { service.getAllFilms() }
+    }
+
+    @Test
+    fun testRefreshFilms() = testCoroutineDispatcher.runBlockingTest {
+        coEvery { service.getAllFilms() } returns films andThen emptyList()
+        var list = films
+        datastore.getAllFilmsFlow().onEach {
+            Assert.assertEquals(it, list)
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
+        testCoroutineDispatcher.advanceUntilIdle()
+        list = emptyList()
+        datastore.refreshFilms()
+        testCoroutineDispatcher.advanceUntilIdle()
+        coVerify(exactly = 2) { service.getAllFilms() }
     }
 }

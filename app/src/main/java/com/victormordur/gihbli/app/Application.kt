@@ -6,6 +6,7 @@ import com.victormordur.gihbli.app.data.di.getDbModule
 import com.victormordur.gihbli.app.data.di.getServiceModule
 import com.victormordur.gihbli.app.data.di.repositoryModule
 import com.victormordur.gihbli.app.data.di.useCaseModule
+import com.victormordur.gihbli.app.data.di.viewModelModule
 import com.victormordur.gihbli.app.data.service.remote.createHttpClient
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -26,7 +27,8 @@ class Application : Application() {
                 getDbModule(this@Application),
                 datastoreModule,
                 repositoryModule,
-                useCaseModule
+                useCaseModule,
+                viewModelModule
             )
         }
     }

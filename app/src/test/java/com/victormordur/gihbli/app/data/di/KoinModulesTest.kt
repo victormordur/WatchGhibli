@@ -15,10 +15,7 @@ import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
-import com.victormordur.gihbli.app.domain.usecase.simple.AddToUser
-import com.victormordur.gihbli.app.domain.usecase.simple.MarkUserToBeWatched
-import com.victormordur.gihbli.app.domain.usecase.simple.MarkUserWatched
-import com.victormordur.gihbli.app.domain.usecase.simple.RemoveFromUser
+import com.victormordur.gihbli.app.presentation.list.FilmListViewModel
 import io.ktor.client.HttpClient
 import org.junit.Assert
 import org.junit.Before
@@ -40,7 +37,8 @@ class KoinModulesTest {
         getDbModule(ApplicationProvider.getApplicationContext()),
         datastoreModule,
         repositoryModule,
-        useCaseModule
+        useCaseModule,
+        viewModelModule
     )
 
     @Before
@@ -94,16 +92,15 @@ class KoinModulesTest {
         val getCatalogueFiltered: GetCatalogueFilteredByUserFilms = app.koin.get()
         val getUserToBeWatched: GetUserToBeWatchedFilms = app.koin.get()
         val getUserWatched: GetUserWatchedFilms = app.koin.get()
-        val addToUser: AddToUser = app.koin.get()
-        val removeFromUser: RemoveFromUser = app.koin.get()
-        val markUserToBeWatched: MarkUserToBeWatched = app.koin.get()
-        val markUserWatched: MarkUserWatched = app.koin.get()
         Assert.assertNotNull(getCatalogueFiltered)
         Assert.assertNotNull(getUserToBeWatched)
         Assert.assertNotNull(getUserWatched)
-        Assert.assertNotNull(addToUser)
-        Assert.assertNotNull(removeFromUser)
-        Assert.assertNotNull(markUserToBeWatched)
-        Assert.assertNotNull(markUserWatched)
+    }
+
+    @Test
+    fun testViewModelModuleInstance() {
+        val app = startKoin { modules(koinModules) }
+        val filmListViewModel: FilmListViewModel = app.koin.get()
+        Assert.assertNotNull(filmListViewModel)
     }
 }
