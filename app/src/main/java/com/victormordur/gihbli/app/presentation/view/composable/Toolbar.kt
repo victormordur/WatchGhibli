@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.presentation.view
+package com.victormordur.gihbli.app.presentation.view.composable
 
 import androidx.annotation.StringRes
 import androidx.compose.material.MaterialTheme
