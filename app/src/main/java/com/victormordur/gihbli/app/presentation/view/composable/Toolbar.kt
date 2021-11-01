@@ -12,14 +12,14 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Toolbar(
     @StringRes title: Int? = null,
-    color: Color = MaterialTheme.colors.secondary,
+    color: Color = MaterialTheme.colors.primary,
 ) {
     TopAppBar(
         title = {
             title?.let {
                 Text(
                     stringResource(id = title),
-                    style = MaterialTheme.typography.h6
+                    style = MaterialTheme.typography.h5
                 )
             }
         },

@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name">Watch Ghibli</string>
-    <string name="title">This is work in progress</string>
-    <string name="description">You can compute the meaning of your life using this app.</string>
-    <string name="meaning_hint">Insert your age here</string>
-    <string name="compute">Compute</string>
-    <string name="all_computations_result">42</string>
+    <string name="add_to_watch_list_description">Add film to watch-list</string>
 </resources>

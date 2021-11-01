@@ -21,4 +21,17 @@ object Dimensions {
         @Composable
         fun extra() = dimensionResource(R.dimen.margin_extra)
     }
+
+    object Radius {
+        @Composable
+        fun card() = dimensionResource(R.dimen.card_radius)
+    }
+
+    object Card {
+        const val titleWeight = 0.6f
+        const val buttonsWeight = 0.4f
+
+        @Composable
+        fun totalHeight() = dimensionResource(R.dimen.card_item_height)
+    }
 }

@@ -13,10 +13,13 @@ object Colors {
     fun primaryDark(): Color = colorResource(R.color.colorPrimaryDark)
 
     @Composable
-    fun secondary(): Color = colorResource(R.color.colorSecondary)
+    fun accent(): Color = colorResource(R.color.colorAccent)
 
     @Composable
-    fun accent(): Color = colorResource(R.color.colorAccent)
+    fun quartz(): Color = colorResource(R.color.quartz)
+
+    @Composable
+    fun violet(): Color = colorResource(R.color.violet)
 
     @Composable
     fun error(): Color = colorResource(R.color.colorError)
