@@ -115,6 +115,7 @@ dependencies {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += listOf(
         "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",
-        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xopt-in=coil.annotation.ExperimentalCoilApi"
     )
 }

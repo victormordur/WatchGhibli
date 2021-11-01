@@ -16,10 +16,10 @@ object Colors {
     fun accent(): Color = colorResource(R.color.colorAccent)
 
     @Composable
-    fun quartz(): Color = colorResource(R.color.quartz)
+    fun secondary(): Color = colorResource(R.color.secondary)
 
     @Composable
-    fun violet(): Color = colorResource(R.color.violet)
+    fun secondaryDark(): Color = colorResource(R.color.secondaryDark)
 
     @Composable
     fun error(): Color = colorResource(R.color.colorError)

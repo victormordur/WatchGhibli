@@ -3,7 +3,7 @@
     <color name="colorPrimary">#a7a7a7</color>
     <color name="colorPrimaryDark">#14191F</color>
     <color name="colorAccent">#8aff64</color>
-    <color name="quartz">#D9D9F3</color>
-    <color name="violet">#7D35FF</color>
+    <color name="secondary">#D9D9F3</color>
+    <color name="secondaryDark">#7D35FF</color>
     <color name="colorError">@android:color/holo_red_light</color>
 </resources>

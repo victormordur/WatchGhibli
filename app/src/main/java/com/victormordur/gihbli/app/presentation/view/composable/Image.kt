@@ -2,7 +2,6 @@ package com.victormordur.gihbli.app.presentation.view.composable
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -11,7 +10,7 @@ import coil.compose.rememberImagePainter
 import com.victormordur.gihbli.app.presentation.style.Dimensions
 
 @Composable
-fun Image(@DrawableRes drawableRes: Int, modifier: Modifier = Modifier.fillMaxWidth()) {
+fun Image(@DrawableRes drawableRes: Int, modifier: Modifier = Modifier) {
     androidx.compose.foundation.Image(
         painter = painterResource(id = drawableRes),
         contentDescription = null,

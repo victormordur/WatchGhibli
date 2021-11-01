@@ -5,31 +5,39 @@ import androidx.compose.material.Snackbar
 import androidx.compose.material.SnackbarData
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-
-enum class SnackBarType { Info, Error }
 
 @Composable
 fun InfoSnackBar(data: SnackbarData) {
-    TextSnackBar(backgroundColor = MaterialTheme.colors.primaryVariant, snackBarData = data)
+    TextSnackBar(
+        backgroundColor = MaterialTheme.colors.primaryVariant,
+        Color.Black,
+        snackBarData = data
+    )
 }
 
 @Composable
 fun ErrorSnackBar(data: SnackbarData) {
-    TextSnackBar(backgroundColor = MaterialTheme.colors.error, snackBarData = data)
+    TextSnackBar(
+        backgroundColor = MaterialTheme.colors.error,
+        Color.White,
+        snackBarData = data
+    )
 }
 
 @Composable
-fun TextSnackBar(backgroundColor: Color, snackBarData: SnackbarData) {
+fun TextSnackBar(backgroundColor: Color, textColor: Color, snackBarData: SnackbarData) {
     Snackbar(
         backgroundColor = backgroundColor,
-        shape = RectangleShape,
+        modifier = Modifier
     ) {
         Text(
             text = snackBarData.message,
-            color = MaterialTheme.colors.primaryVariant,
-            style = MaterialTheme.typography.body2,
+            color = textColor,
+            style = MaterialTheme.typography.body1,
         )
     }
 }
+
+enum class SnackBarType { Info, Error }

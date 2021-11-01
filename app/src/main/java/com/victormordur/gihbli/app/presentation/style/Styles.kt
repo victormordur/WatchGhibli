@@ -16,7 +16,7 @@ object Styles {
     fun ghibliLightColorPalette() = lightColors(
         primary = Colors.primary(),
         primaryVariant = Colors.accent(),
-        secondary = Colors.quartz(),
+        secondary = Colors.secondary(),
         background = Colors.primary(),
         onPrimary = Color.Black,
         error = Colors.error(),
@@ -27,7 +27,7 @@ object Styles {
     fun ghibliDarkColorPalette() = darkColors(
         primary = Colors.primaryDark(),
         primaryVariant = Colors.accent(),
-        secondary = Colors.violet(),
+        secondary = Colors.secondaryDark(),
         background = Colors.primaryDark(),
         onPrimary = Color.White,
         error = Colors.error(),
