@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.preesentation
+package com.victormordur.gihbli.app.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.victormordur.gihbli.app.data.model.Film
@@ -6,7 +6,7 @@ import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
-import com.victormordur.gihbli.app.presentation.ViewState
+import com.victormordur.gihbli.app.presentation.list.FilmListActionSuccess
 import com.victormordur.gihbli.app.presentation.list.FilmListViewModel
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -125,43 +125,61 @@ class FilmListViewModelTest {
     }
 
     @Test
-    fun testAddFilmToWatchList() {
+    fun testAddFilmToWatchList() = testCoroutineDispatcher.runBlockingTest {
         coEvery { repository.addToUser(film) } just Runs
         val viewModel = initViewModel()
-        runBlocking {
-            viewModel.addFilmToWatchList(film)
-        }
+        viewModel.actionResultFlow.mapLatest {
+            Assert.assertEquals(it, FilmListActionSuccess.AddFilm(film))
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
+        viewModel.addFilmToWatchList(film)
+        testCoroutineDispatcher.advanceUntilIdle()
         coVerify { repository.addToUser(film) }
     }
 
     @Test
-    fun testRemoveFilmFromWatchList() {
+    fun testRemoveFilmFromWatchList() = testCoroutineDispatcher.runBlockingTest {
         coEvery { repository.removeFromUser(film.id) } just Runs
         val viewModel = initViewModel()
-        runBlocking {
-            viewModel.removeFilmFromWatchList(film)
-        }
+        viewModel.actionResultFlow.mapLatest {
+            Assert.assertEquals(it, FilmListActionSuccess.RemoveFilm(film))
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
+        viewModel.removeFilmFromWatchList(film)
         coVerify { repository.removeFromUser(film.id) }
     }
 
     @Test
-    fun testMoveFilmBackAsToBeWatched() {
+    fun testMoveFilmBackAsToBeWatched() = testCoroutineDispatcher.runBlockingTest {
         coEvery { repository.markToBeWatched(film.id) } just Runs
         val viewModel = initViewModel()
-        runBlocking {
-            viewModel.moveFilmBackAsToBeWatched(film)
-        }
+        viewModel.actionResultFlow.mapLatest {
+            Assert.assertEquals(it, FilmListActionSuccess.MarkToBeWatched(film))
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
+        viewModel.moveFilmBackAsToBeWatched(film)
         coVerify { repository.markToBeWatched(film.id) }
     }
 
     @Test
-    fun testMoveFilmForwardAsWatched() {
+    fun testMoveFilmForwardAsWatched() = testCoroutineDispatcher.runBlockingTest {
         coEvery { repository.markWatched(film.id) } just Runs
         val viewModel = initViewModel()
-        runBlocking {
-            viewModel.moveFilmForwardAsWatched(film)
-        }
+        viewModel.actionResultFlow.mapLatest {
+            Assert.assertEquals(it, FilmListActionSuccess.MarkWatched(film))
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
+        viewModel.moveFilmForwardAsWatched(film)
         coVerify { repository.markWatched(film.id) }
+    }
+
+    @Test
+    fun testActionFailureNotified() = testCoroutineDispatcher.runBlockingTest {
+        val exception = Exception("Dummy Exception")
+        coEvery { repository.addToUser(film) } throws exception
+        val viewModel = initViewModel()
+        viewModel.actionErrorFlow.mapLatest {
+            Assert.assertEquals(it, exception)
+        }.launchIn(CoroutineScope(testCoroutineDispatcher))
+        viewModel.addFilmToWatchList(film)
+        testCoroutineDispatcher.advanceUntilIdle()
+        coVerify { repository.addToUser(film) }
     }
 
     private fun initViewModel() = FilmListViewModel(

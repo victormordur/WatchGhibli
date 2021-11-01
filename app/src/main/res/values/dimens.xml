@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="base_grid_size">8dp</dimen>
-    <dimen name="doub_grid_size">16dp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="margin_double">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_extra">64dp</dimen>
+    <dimen name="card_radius">24dp</dimen>
+    <dimen name="card_item_height">240dp</dimen>
 </resources>

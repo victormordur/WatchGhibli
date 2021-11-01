@@ -7,23 +7,27 @@ object Sdk {
 object Versions {
     const val KOTLIN = "1.5.30"
     const val COROUTINES = "1.5.2"
-    const val ANDROIDX_TEST_EXT = "1.1.3"
-    const val ANDROIDX_TEST = "1.4.0"
     const val APPCOMPAT = "1.3.1"
     const val CONSTRAINT_LAYOUT = "2.0.4"
     const val CORE_KTX = "1.6.0"
     const val ACTIVITY = "1.3.1"
-    const val LIFECYCLE = "2.3.1"
+    const val LIFECYCLE = "2.4.0"
+    const val COMPOSE_CORE = "1.0.3"
+    const val COMPOSE_ACCOMPANIST = "0.16.1"
+    const val COMPOSE_COIL = "1.3.2"
+    const val KOIN = "3.0.2"
+    const val KTOR = "1.6.2"
+    const val SQLDELIGHT = "1.5.2"
+    const val TIMBER = "5.0.1"
+    const val SLFJ4 = "1.7.5"
+    const val KTLINT = "0.42.0"
+    const val JUNIT = "4.13.2"
+    const val ANDROIDX_TEST = "1.4.0"
+    const val ANDROIDX_TEST_EXT = "1.1.3"
     const val ARCH_CORE = "2.1.0"
     const val ESPRESSO_CORE = "3.4.0"
     const val ROBOELECTRIC = "4.6"
-    const val JUNIT = "4.13.2"
-    const val KTLINT = "0.42.0"
-    const val KOIN = "3.0.2"
-    const val KTOR = "1.6.2"
-    const val TIMBER = "5.0.1"
-    const val SLFJ4 = "1.7.5"
-    const val SQLDELIGHT = "1.5.2"
+
     const val MOCKK = "1.12.0"
 }
 
@@ -50,6 +54,41 @@ object SupportLibs {
     const val ANDROIDX_LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE}"
     const val ANDROIDX_LIFECYCLE_LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE}"
     const val ANDROIDX_LIFECYCLE_VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"
+}
+
+object Compose {
+    const val UI = "androidx.compose.ui:ui:${Versions.COMPOSE_CORE}"
+
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    const val FOUNDATION = "androidx.compose.foundation:foundation:${Versions.COMPOSE_CORE}"
+
+    // Material Design
+    const val MATERIAL = "androidx.compose.material:material:${Versions.COMPOSE_CORE}"
+
+    // Material design icons
+    const val MATERIAL_ICONS =
+        "androidx.compose.material:material-icons-core:${Versions.COMPOSE_CORE}"
+    const val MATERIAL_ICONS_EXT =
+        "androidx.compose.material:material-icons-extended:${Versions.COMPOSE_CORE}"
+
+    // Tooling support (Previews, etc.)
+    const val TOOLING = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE_CORE}"
+
+    const val ANDROIDX_ACTIVITY = "androidx.activity:activity-compose:${Versions.ACTIVITY}"
+
+    // Integration with ViewModels
+    const val ANDROIDX_VIEWMODEL =
+        "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.LIFECYCLE}"
+
+    // Integration with observables
+    const val LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Versions.COMPOSE_CORE}"
+
+    // Support
+    const val SWIPE_TO_REFRESH =
+        "com.google.accompanist:accompanist-swiperefresh:${Versions.COMPOSE_ACCOMPANIST}"
+
+    // Image Loader
+    const val COIL = "io.coil-kt:coil-compose:${Versions.COMPOSE_COIL}"
 }
 
 object Logger {

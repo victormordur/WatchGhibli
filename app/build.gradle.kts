@@ -18,6 +18,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
+        compose = true
         viewBinding = true
     }
     compileOptions {
@@ -26,6 +27,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.COMPOSE_CORE
     }
     buildTypes {
         getByName("release") {
@@ -69,6 +73,17 @@ dependencies {
     implementation(SupportLibs.ANDROIDX_LIFECYCLE_LIVEDATA)
     implementation(SupportLibs.ANDROIDX_LIFECYCLE_VIEWMODEL)
 
+    implementation(Compose.UI)
+    implementation(Compose.FOUNDATION)
+    implementation(Compose.MATERIAL)
+    implementation(Compose.MATERIAL_ICONS)
+    implementation(Compose.MATERIAL_ICONS_EXT)
+    implementation(Compose.TOOLING)
+    implementation(Compose.ANDROIDX_ACTIVITY)
+    implementation(Compose.ANDROIDX_VIEWMODEL)
+    implementation(Compose.SWIPE_TO_REFRESH)
+    implementation(Compose.COIL)
+
     implementation(Logger.SLFJ4)
     implementation(Logger.TIMBER)
 
@@ -100,6 +115,7 @@ dependencies {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += listOf(
         "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",
-        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xopt-in=coil.annotation.ExperimentalCoilApi"
     )
 }
