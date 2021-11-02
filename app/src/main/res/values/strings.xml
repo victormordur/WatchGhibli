@@ -11,4 +11,7 @@
 
     // Accessibility
     <string name="add_to_watch_list_desc">Add film to Watch List</string>
+    <string name="remove_from_watch_list_desc">Remove film from Watch List</string>
+    <string name="mark_watched_desc">Mark film as watched</string>
+    <string name="mark_to_be_watched_desc">Mark film as to be watched</string>
 </resources>

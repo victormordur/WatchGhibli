@@ -30,24 +30,24 @@ fun CatalogueContent(
     val swipeRefreshState = rememberSwipeRefreshState(content is ViewState.Loading)
 
     SwipeRefresh(state = swipeRefreshState, onRefresh = { onRefresh.invoke() }) {
-    when (content) {
-        is ViewState.Content -> {
-            // TODO Check if list and show empty content if necessary
-            CatalogueList(
-                content.data,
-                onItemClick,
-                onItemAdd
-            )
-        }
-        is ViewState.Loading -> {
-            // Nothing to do here.
-            // Managed by SwipeRefreshSate
-        }
-        is ViewState.Error -> {
-            // TODO Launch error content
+        when (content) {
+            is ViewState.Content -> {
+                // TODO Check if list and show empty content if necessary
+                CatalogueList(
+                    content.data,
+                    onItemClick,
+                    onItemAdd
+                )
+            }
+            is ViewState.Loading -> {
+                // Nothing to do here.
+                // Managed by SwipeRefreshSate
+            }
+            is ViewState.Error -> {
+                // TODO Launch error content
+            }
         }
     }
-}
 }
 
 @Composable
