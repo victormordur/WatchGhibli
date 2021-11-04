@@ -8,15 +8,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import com.victormordur.gihbli.app.presentation.list.navigation.NavigationItem
+import androidx.navigation.NavController
+import com.victormordur.gihbli.app.presentation.list.navigation.FilmListNavigationItem
 
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
-        NavigationItem.Catalogue,
-        NavigationItem.WatchList,
-        NavigationItem.Watched
+        FilmListNavigationItem.Catalogue,
+        FilmListNavigationItem.WatchList,
+        FilmListNavigationItem.Watched
     )
     BottomNavigation(
         backgroundColor = MaterialTheme.colors.primary,
@@ -26,22 +26,24 @@ fun BottomNavigationBar() {
                 icon = {
                     Icon(
                         painter = painterResource(item.iconResId),
-                        contentDescription = stringResource(item.labelResId)
+                        contentDescription = stringResource(item.labelResId),
                     )
                 },
                 label = { Text(text = stringResource(item.labelResId)) },
                 alwaysShowLabel = true,
                 selected = false,
                 onClick = {
-                    /* TODO */
+                    navController.navigate(item.route) {
+                        navController.graph.startDestinationRoute?.let { route ->
+                            popUpTo(route) {
+                                saveState = true
+                            }
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BottomNavigationBarPreview() {
-    BottomNavigationBar()
 }

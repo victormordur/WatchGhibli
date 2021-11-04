@@ -12,20 +12,20 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
-import com.victormordur.gihbli.app.presentation.list.FilmListViewModel
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemButtonConfig
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemOneButtonContent
 import com.victormordur.gihbli.app.presentation.style.Dimensions
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun CatalogueContent(
-    viewModel: FilmListViewModel,
+    catalogueContent: StateFlow<ViewState<List<Film>>>,
     onRefresh: () -> Unit,
     onItemClick: (Film) -> Unit,
     onItemAdd: (Film) -> Unit,
     lifecycleScope: LifecycleCoroutineScope
 ) {
-    val content = viewModel.catalogueContent.collectAsState(lifecycleScope.coroutineContext).value
+    val content = catalogueContent.collectAsState(lifecycleScope.coroutineContext).value
 
     val swipeRefreshState = rememberSwipeRefreshState(content is ViewState.Loading)
 

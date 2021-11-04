@@ -13,10 +13,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.compose.rememberNavController
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.presentation.common.ActionResult
-import com.victormordur.gihbli.app.presentation.list.content.catalogue.CatalogueContent
+import com.victormordur.gihbli.app.presentation.list.navigation.FilmListNavigation
 import com.victormordur.gihbli.app.presentation.style.GhibliTheme
+import com.victormordur.gihbli.app.presentation.view.composable.BottomNavigationBar
 import com.victormordur.gihbli.app.presentation.view.composable.ErrorSnackBar
 import com.victormordur.gihbli.app.presentation.view.composable.InfoSnackBar
 import com.victormordur.gihbli.app.presentation.view.composable.SnackBarType
@@ -32,10 +34,12 @@ class FilmListActivity : ComponentActivity() {
         setContent {
             GhibliTheme {
                 val scaffoldState = rememberScaffoldState()
+                val navController = rememberNavController()
                 Scaffold(
                     topBar = {
                         Toolbar(title = R.string.app_name)
                     },
+                    bottomBar = { BottomNavigationBar(navController) },
                     scaffoldState = scaffoldState,
                     snackbarHost = {
                         SnackbarHost(it) { data ->
@@ -61,11 +65,11 @@ class FilmListActivity : ComponentActivity() {
                         ShowInfoSnackBar(scaffoldState, it)
                     }
 
-                    CatalogueContent(
-                        viewModel = viewModel,
-                        onRefresh = { viewModel.refreshCatalogue() },
+                    FilmListNavigation(
+                        navController = navController,
+                        content = viewModel,
+                        actions = viewModel,
                         onItemClick = { /* TODO launch item details screen */ },
-                        onItemAdd = { viewModel.addFilmToWatchList(it) },
                         lifecycleScope = lifecycleScope
                     )
                 }

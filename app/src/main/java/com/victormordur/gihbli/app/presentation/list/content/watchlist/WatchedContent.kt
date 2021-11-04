@@ -10,21 +10,21 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
-import com.victormordur.gihbli.app.presentation.list.FilmListViewModel
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemButtonConfig
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemTwoButtonContent
 import com.victormordur.gihbli.app.presentation.style.Dimensions
 import com.victormordur.gihbli.app.presentation.view.composable.CircularProgressBar
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun WatchedContent(
-    viewModel: FilmListViewModel,
+    watchedContent: StateFlow<ViewState<List<Film>>>,
     onItemClick: (Film) -> Unit,
     onItemRemove: (Film) -> Unit,
     onItemMarkToBeWatched: (Film) -> Unit,
     lifecycleScope: LifecycleCoroutineScope
 ) {
-    val content = viewModel.watchedContent.collectAsState(lifecycleScope.coroutineContext).value
+    val content = watchedContent.collectAsState(lifecycleScope.coroutineContext).value
 
     when (content) {
         is ViewState.Content -> {

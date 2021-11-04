@@ -82,6 +82,7 @@ dependencies {
     implementation(Compose.ANDROIDX_ACTIVITY)
     implementation(Compose.ANDROIDX_VIEWMODEL)
     implementation(Compose.SWIPE_TO_REFRESH)
+    implementation(Compose.NAVIGATION)
     implementation(Compose.COIL)
 
     implementation(Logger.SLFJ4)
