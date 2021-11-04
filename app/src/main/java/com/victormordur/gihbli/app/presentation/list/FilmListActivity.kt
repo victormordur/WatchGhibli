@@ -3,6 +3,8 @@ package com.victormordur.gihbli.app.presentation.list
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.SnackbarDuration
@@ -11,6 +13,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
@@ -53,7 +56,8 @@ class FilmListActivity : ComponentActivity() {
                             }
                         }
                     }
-                ) {
+                ) { innerPadding ->
+
                     val actionError = viewModel.actionErrorFlow.collectAsState(initial = null)
                     val actionResult = viewModel.actionResultFlow.collectAsState(initial = null)
 
@@ -65,13 +69,15 @@ class FilmListActivity : ComponentActivity() {
                         ShowInfoSnackBar(scaffoldState, it)
                     }
 
-                    FilmListNavigation(
-                        navController = navController,
-                        content = viewModel,
-                        actions = viewModel,
-                        onItemClick = { /* TODO launch item details screen */ },
-                        lifecycleScope = lifecycleScope
-                    )
+                    Box(modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())) {
+                        FilmListNavigation(
+                            navController = navController,
+                            content = viewModel,
+                            actions = viewModel,
+                            onItemClick = { /* TODO launch item details screen */ },
+                            lifecycleScope = lifecycleScope
+                        )
+                    }
                 }
             }
         }

@@ -1,11 +1,10 @@
 package com.victormordur.gihbli.app.presentation.list.content.watchlist
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
@@ -53,7 +52,7 @@ private fun WatchedList(
     onItemMarkToBeWatched: (Film) -> Unit,
 ) {
     LazyColumn(
-        modifier = Modifier.padding(top = Dimensions.Margin.double()),
+        verticalArrangement = Arrangement.spacedBy(Dimensions.Margin.default())
     ) {
         items(filmList) { film ->
             WatchedListItem(film, onItemClick, onItemRemove, onItemMarkToBeWatched)

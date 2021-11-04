@@ -1,11 +1,10 @@
 package com.victormordur.gihbli.app.presentation.list.content.catalogue
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -30,24 +29,24 @@ fun CatalogueContent(
     val swipeRefreshState = rememberSwipeRefreshState(content is ViewState.Loading)
 
     SwipeRefresh(state = swipeRefreshState, onRefresh = { onRefresh.invoke() }) {
-        when (content) {
-            is ViewState.Content -> {
-                // TODO Check if list and show empty content if necessary
-                CatalogueList(
-                    content.data,
-                    onItemClick,
-                    onItemAdd
-                )
-            }
-            is ViewState.Loading -> {
-                // Nothing to do here.
-                // Managed by SwipeRefreshSate
-            }
-            is ViewState.Error -> {
-                // TODO Launch error content
-            }
+    when (content) {
+        is ViewState.Content -> {
+            // TODO Check if list and show empty content if necessary
+            CatalogueList(
+                content.data,
+                onItemClick,
+                onItemAdd
+            )
+        }
+        is ViewState.Loading -> {
+            // Nothing to do here.
+            // Managed by SwipeRefreshSate
+        }
+        is ViewState.Error -> {
+            // TODO Launch error content
         }
     }
+}
 }
 
 @Composable
@@ -57,7 +56,7 @@ private fun CatalogueList(
     onItemAdd: (Film) -> Unit,
 ) {
     LazyColumn(
-        modifier = Modifier.padding(top = Dimensions.Margin.double()),
+        verticalArrangement = Arrangement.spacedBy(Dimensions.Margin.default())
     ) {
         items(filmList) { film ->
             CatalogueListItem(film, onItemClick, onItemAdd)
