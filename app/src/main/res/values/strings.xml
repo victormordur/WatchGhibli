@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Watch Ghibli</string>
+    <string name="catalogue">Catalogue</string>
+    <string name="watch_list">Watch List</string>
+    <string name="watched">Watched</string>
     <string name="add_film_success">Film added to Watch List</string>
     <string name="remove_film_success">Film removed from Watch List</string>
     <string name="mark_to_be_watched_success">Film moved back to be Watch List</string>
