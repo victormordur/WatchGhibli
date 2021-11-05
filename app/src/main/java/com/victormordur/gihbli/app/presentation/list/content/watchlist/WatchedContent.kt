@@ -10,6 +10,7 @@ import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
 import com.victormordur.gihbli.app.presentation.list.content.empty.EmptyListContent
+import com.victormordur.gihbli.app.presentation.list.content.error.ErrorListContent
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemButtonConfig
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemTwoButtonContent
 import com.victormordur.gihbli.app.presentation.style.Dimensions
@@ -43,7 +44,7 @@ fun WatchedContent(
             CircularProgressBar()
         }
         is ViewState.Error -> {
-            // TODO Launch error content
+            ErrorListContent()
         }
     }
 }

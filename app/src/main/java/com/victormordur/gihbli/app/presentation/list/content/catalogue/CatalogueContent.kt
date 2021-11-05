@@ -12,6 +12,7 @@ import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
 import com.victormordur.gihbli.app.presentation.list.content.empty.EmptyListContent
+import com.victormordur.gihbli.app.presentation.list.content.error.ErrorListContent
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemButtonConfig
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemOneButtonContent
 import com.victormordur.gihbli.app.presentation.style.Dimensions
@@ -47,7 +48,7 @@ fun CatalogueContent(
             // Managed by SwipeRefreshSate
         }
         is ViewState.Error -> {
-            // TODO Launch error content
+            ErrorListContent()
         }
     }
 }

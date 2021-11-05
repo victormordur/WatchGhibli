@@ -15,6 +15,7 @@
 
     // Error
     <string name="unexpected_error">Unexpected error</string>
+    <string name="generic_list_error">Oops! Something happened</string>
 
     // Accessibility
     <string name="add_to_watch_list_desc">Add film to Watch List</string>
