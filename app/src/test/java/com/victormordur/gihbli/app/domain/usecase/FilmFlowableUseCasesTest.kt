@@ -53,12 +53,14 @@ class FilmFlowableUseCasesTest {
     @Test
     fun testCatalogueFilteredByUser() {
         val flowCatalogue = flowOf(filmsCatalogue)
-        val flowUser = flowOf(filmsUser)
+        val flowUser = flowOf(filmsUserSomeWatched)
         coEvery { repository.getCatalogueFilmsFlow() } returns flowCatalogue
         coEvery { repository.getUserFilmsFlow() } returns flowUser
         runBlocking {
-            getCatalogueFiltered.requestFlow().mapLatest {
-                Assert.assertEquals(it, filmsCatalogue.subList(0, 2))
+            getCatalogueFiltered.requestFlow().mapLatest { flowFilms ->
+                val flowFilmsIds = flowFilms.map { it.id }
+                val filmsCatalogueFilteredIds = filmsCatalogue.subList(0, 2).map { it.id }
+                Assert.assertEquals(flowFilmsIds, filmsCatalogueFilteredIds)
                 coVerify { repository.getCatalogueFilmsFlow() }
                 coVerify { repository.getUserFilmsFlow() }
             }.launchIn(this)
