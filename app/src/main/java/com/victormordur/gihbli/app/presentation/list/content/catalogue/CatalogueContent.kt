@@ -11,6 +11,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
+import com.victormordur.gihbli.app.presentation.list.content.empty.EmptyListContent
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemButtonConfig
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemOneButtonContent
 import com.victormordur.gihbli.app.presentation.style.Dimensions
@@ -31,12 +32,15 @@ fun CatalogueContent(
     SwipeRefresh(state = swipeRefreshState, onRefresh = { onRefresh.invoke() }) {
     when (content) {
         is ViewState.Content -> {
-            // TODO Check if list and show empty content if necessary
-            CatalogueList(
-                content.data,
-                onItemClick,
-                onItemAdd
-            )
+            if (content.data.isNotEmpty()) {
+                CatalogueList(
+                    content.data,
+                    onItemClick,
+                    onItemAdd
+                )
+            } else {
+                EmptyListContent(R.string.catalogue_list_empty)
+            }
         }
         is ViewState.Loading -> {
             // Nothing to do here.

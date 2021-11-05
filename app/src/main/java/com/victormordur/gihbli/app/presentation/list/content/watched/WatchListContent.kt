@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
+import com.victormordur.gihbli.app.presentation.list.content.empty.EmptyListContent
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemButtonConfig
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemTwoButtonContent
 import com.victormordur.gihbli.app.presentation.style.Dimensions
@@ -27,13 +28,16 @@ fun WatchListContent(
 
     when (content) {
         is ViewState.Content -> {
-            // TODO Check if list and show empty content if necessary
-            WatchListList(
-                content.data,
-                onItemClick,
-                onItemRemove,
-                onItemMarkWatched
-            )
+            if (content.data.isNotEmpty()) {
+                WatchListList(
+                    content.data,
+                    onItemClick,
+                    onItemRemove,
+                    onItemMarkWatched
+                )
+            } else {
+                EmptyListContent(R.string.watch_list_list_empty)
+            }
         }
         is ViewState.Loading -> {
             CircularProgressBar()
