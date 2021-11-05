@@ -24,7 +24,7 @@ class Application : Application() {
         startKoin {
             modules(
                 getServiceModule(httpClient),
-                getDbModule(this@Application),
+                getDbModule(this@Application, resources.getString(R.string.db_name)),
                 datastoreModule,
                 repositoryModule,
                 useCaseModule,

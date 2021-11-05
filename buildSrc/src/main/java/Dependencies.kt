@@ -14,6 +14,7 @@ object Versions {
     const val LIFECYCLE = "2.4.0"
     const val COMPOSE_CORE = "1.0.3"
     const val COMPOSE_ACCOMPANIST = "0.16.1"
+    const val COMPOSE_NAVIGATION = "2.4.0-beta02"
     const val COMPOSE_COIL = "1.3.2"
     const val KOIN = "3.0.2"
     const val KTOR = "1.6.2"
@@ -80,12 +81,13 @@ object Compose {
     const val ANDROIDX_VIEWMODEL =
         "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.LIFECYCLE}"
 
-    // Integration with observables
-    const val LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Versions.COMPOSE_CORE}"
-
     // Support
     const val SWIPE_TO_REFRESH =
         "com.google.accompanist:accompanist-swiperefresh:${Versions.COMPOSE_ACCOMPANIST}"
+
+    // Navigation bar
+    const val NAVIGATION =
+        "androidx.navigation:navigation-compose:${Versions.COMPOSE_NAVIGATION}"
 
     // Image Loader
     const val COIL = "io.coil-kt:coil-compose:${Versions.COMPOSE_COIL}"

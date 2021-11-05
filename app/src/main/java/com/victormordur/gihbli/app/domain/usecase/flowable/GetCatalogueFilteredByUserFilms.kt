@@ -13,11 +13,11 @@ class GetCatalogueFilteredByUserFilms(private val repository: FilmRepositoryCont
             repository.getCatalogueFilmsFlow().distinctUntilChanged(),
             repository.getUserFilmsFlow().distinctUntilChanged()
         ) { catalogue, user ->
-            catalogue.mapNotNull {
-                if (user.contains(it)) {
+            catalogue.mapNotNull { catalogueFilm ->
+                if (user.any { it.id == catalogueFilm.id }) {
                     null
                 } else {
-                    it
+                    catalogueFilm
                 }
             }
         }

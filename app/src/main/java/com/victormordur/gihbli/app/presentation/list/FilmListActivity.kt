@@ -3,6 +3,8 @@ package com.victormordur.gihbli.app.presentation.list
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.SnackbarDuration
@@ -11,12 +13,15 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.compose.rememberNavController
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.presentation.common.ActionResult
-import com.victormordur.gihbli.app.presentation.list.content.catalogue.CatalogueContent
+import com.victormordur.gihbli.app.presentation.list.navigation.FilmListNavigation
 import com.victormordur.gihbli.app.presentation.style.GhibliTheme
+import com.victormordur.gihbli.app.presentation.view.composable.BottomNavigationBar
 import com.victormordur.gihbli.app.presentation.view.composable.ErrorSnackBar
 import com.victormordur.gihbli.app.presentation.view.composable.InfoSnackBar
 import com.victormordur.gihbli.app.presentation.view.composable.SnackBarType
@@ -32,10 +37,12 @@ class FilmListActivity : ComponentActivity() {
         setContent {
             GhibliTheme {
                 val scaffoldState = rememberScaffoldState()
+                val navController = rememberNavController()
                 Scaffold(
                     topBar = {
                         Toolbar(title = R.string.app_name)
                     },
+                    bottomBar = { BottomNavigationBar(navController) },
                     scaffoldState = scaffoldState,
                     snackbarHost = {
                         SnackbarHost(it) { data ->
@@ -49,7 +56,8 @@ class FilmListActivity : ComponentActivity() {
                             }
                         }
                     }
-                ) {
+                ) { innerPadding ->
+
                     val actionError = viewModel.actionErrorFlow.collectAsState(initial = null)
                     val actionResult = viewModel.actionResultFlow.collectAsState(initial = null)
 
@@ -61,13 +69,15 @@ class FilmListActivity : ComponentActivity() {
                         ShowInfoSnackBar(scaffoldState, it)
                     }
 
-                    CatalogueContent(
-                        viewModel = viewModel,
-                        onRefresh = { viewModel.refreshCatalogue() },
-                        onItemClick = { /* TODO launch item details screen */ },
-                        onItemAdd = { viewModel.addFilmToWatchList(it) },
-                        lifecycleScope = lifecycleScope
-                    )
+                    Box(modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())) {
+                        FilmListNavigation(
+                            navController = navController,
+                            content = viewModel,
+                            actions = viewModel,
+                            onItemClick = { /* TODO launch item details screen */ },
+                            lifecycleScope = lifecycleScope
+                        )
+                    }
                 }
             }
         }

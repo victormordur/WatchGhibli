@@ -34,7 +34,7 @@ class KoinModulesTest {
     private val httpClient = createHttpClient()
     private val koinModules: List<Module> = listOf(
         getServiceModule(httpClient),
-        getDbModule(ApplicationProvider.getApplicationContext()),
+        getDbModule(ApplicationProvider.getApplicationContext(), "TestDbName.db"),
         datastoreModule,
         repositoryModule,
         useCaseModule,

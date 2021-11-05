@@ -24,8 +24,8 @@ fun getServiceModule(httpClient: HttpClient) = module {
     single<RemoteServiceContract.FilmService> { RemoteGihbliService(get()) }
 }
 
-fun getDbModule(application: Application) = module {
-    single<SqlDriver> { AndroidSqliteDriver(Database.Schema, application) }
+fun getDbModule(application: Application, dbName: String) = module {
+    single<SqlDriver> { AndroidSqliteDriver(Database.Schema, application, dbName) }
     single { Database(get()) }
 }
 

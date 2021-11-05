@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.presentation.list.content.catalogue
+package com.victormordur.gihbli.app.presentation.list.content.watchlist
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
@@ -6,78 +6,84 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.LifecycleCoroutineScope
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
 import com.victormordur.gihbli.app.presentation.list.content.empty.EmptyListContent
 import com.victormordur.gihbli.app.presentation.list.content.error.ErrorListContent
 import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemButtonConfig
-import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemOneButtonContent
+import com.victormordur.gihbli.app.presentation.list.content.item.FilmListItemTwoButtonContent
 import com.victormordur.gihbli.app.presentation.style.Dimensions
+import com.victormordur.gihbli.app.presentation.view.composable.CircularProgressBar
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun CatalogueContent(
-    catalogueContent: StateFlow<ViewState<List<Film>>>,
-    onRefresh: () -> Unit,
+fun WatchedContent(
+    watchedContent: StateFlow<ViewState<List<Film>>>,
     onItemClick: (Film) -> Unit,
-    onItemAdd: (Film) -> Unit,
+    onItemRemove: (Film) -> Unit,
+    onItemMarkToBeWatched: (Film) -> Unit,
     lifecycleScope: LifecycleCoroutineScope
 ) {
-    val content = catalogueContent.collectAsState(lifecycleScope.coroutineContext).value
+    val content = watchedContent.collectAsState(lifecycleScope.coroutineContext).value
 
-    val swipeRefreshState = rememberSwipeRefreshState(content is ViewState.Loading)
-
-    SwipeRefresh(state = swipeRefreshState, onRefresh = { onRefresh.invoke() }) {
     when (content) {
         is ViewState.Content -> {
             if (content.data.isNotEmpty()) {
-                CatalogueList(
+                WatchedList(
                     content.data,
                     onItemClick,
-                    onItemAdd
+                    onItemRemove,
+                    onItemMarkToBeWatched
                 )
             } else {
-                EmptyListContent(R.string.catalogue_list_empty)
+                EmptyListContent(R.string.watched_list_empty)
             }
         }
         is ViewState.Loading -> {
-            // Nothing to do here.
-            // Managed by SwipeRefreshSate
+            CircularProgressBar()
         }
         is ViewState.Error -> {
             ErrorListContent()
         }
     }
 }
-}
 
 @Composable
-private fun CatalogueList(
+private fun WatchedList(
     filmList: List<Film>,
     onItemClick: (Film) -> Unit,
-    onItemAdd: (Film) -> Unit,
+    onItemRemove: (Film) -> Unit,
+    onItemMarkToBeWatched: (Film) -> Unit,
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(Dimensions.Margin.default())
     ) {
         items(filmList) { film ->
-            CatalogueListItem(film, onItemClick, onItemAdd)
+            WatchedListItem(film, onItemClick, onItemRemove, onItemMarkToBeWatched)
         }
     }
 }
 
 @Composable
-private fun CatalogueListItem(film: Film, onItemClick: (Film) -> Unit, onItemAdd: (Film) -> Unit) {
-    FilmListItemOneButtonContent(
+private fun WatchedListItem(
+    film: Film,
+    onItemClick: (Film) -> Unit,
+    onItemRemove: (Film) -> Unit,
+    onItemMarkToBeWatched: (Film) -> Unit
+) {
+    FilmListItemTwoButtonContent(
         film = film,
         onItemClick = onItemClick,
-        buttonConfig = FilmListItemButtonConfig(
-            R.drawable.ic_add_dark,
-            R.string.add_to_watch_list_desc,
-            onItemAdd
+        rightButtonConfig = FilmListItemButtonConfig(
+            R.drawable.ic_unwatch_dark,
+            R.string.mark_to_be_watched_desc,
+            onItemMarkToBeWatched
+        ),
+        leftButtonConfig = FilmListItemButtonConfig(
+            R.drawable.ic_remove_dark,
+            R.string.remove_from_watch_list_desc,
+            onItemRemove
         )
     )
 }

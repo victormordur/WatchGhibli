@@ -1,14 +1,25 @@
 <resources>
     <string name="app_name">Watch Ghibli</string>
+    <string name="db_name">WatchGhibli.db</string>
+    <string name="catalogue">Catalogue</string>
+    <string name="watch_list">Watch List</string>
+    <string name="watched">Watched</string>
     <string name="add_film_success">Film added to Watch List</string>
     <string name="remove_film_success">Film removed from Watch List</string>
     <string name="mark_to_be_watched_success">Film moved back to be Watch List</string>
     <string name="mark_watched_success">Film marked as Watched</string>
+    <string name="catalogue_list_empty">No more films available in the Catalogue</string>
+    <string name="watch_list_list_empty">No films in the Watch List yet</string>
+    <string name="watched_list_empty">No films Watched yet</string>
     <string name="empty"></string>
 
     // Error
     <string name="unexpected_error">Unexpected error</string>
+    <string name="generic_list_error">Oops! Something happened</string>
 
     // Accessibility
     <string name="add_to_watch_list_desc">Add film to Watch List</string>
+    <string name="remove_from_watch_list_desc">Remove film from Watch List</string>
+    <string name="mark_watched_desc">Mark film as watched</string>
+    <string name="mark_to_be_watched_desc">Mark film as to be watched</string>
 </resources>

@@ -17,37 +17,37 @@ class FilmListViewModel(
     getUserToBeWatchedFilms: GetUserToBeWatchedFilms,
     getUserWatchedFilms: GetUserWatchedFilms
 ) :
-    CommonViewModel() {
+    CommonViewModel(), FilmListContract.Content, FilmListContract.Actions {
 
-    val catalogueContent: StateFlow<ViewState<List<Film>>> =
+    override val catalogueContent: StateFlow<ViewState<List<Film>>> =
         getCatalogueFilteredByUserFilms.requestFlow().asViewStateFlow()
 
-    val toBeWatchedContent: StateFlow<ViewState<List<Film>>> =
+    override val toBeWatchedContent: StateFlow<ViewState<List<Film>>> =
         getUserToBeWatchedFilms.requestFlow().asViewStateFlow()
 
-    val watchedContent: StateFlow<ViewState<List<Film>>> =
+    override val watchedContent: StateFlow<ViewState<List<Film>>> =
         getUserWatchedFilms.requestFlow().asViewStateFlow()
 
-    fun refreshCatalogue() = launchHandledActionNoResult {
+    override fun refreshCatalogue() = launchHandledActionNoResult {
         repository.refreshCatalogueFilms()
     }
 
-    fun addFilmToWatchList(film: Film) = launchHandledAction {
+    override fun addFilmToWatchList(film: Film) = launchHandledAction {
         repository.addToUser(film)
         FilmListActionSuccess.AddFilm(film)
     }
 
-    fun removeFilmFromWatchList(film: Film) = launchHandledAction {
+    override fun removeFilmFromWatchList(film: Film) = launchHandledAction {
         repository.removeFromUser(film.id)
         FilmListActionSuccess.RemoveFilm(film)
     }
 
-    fun moveFilmBackAsToBeWatched(film: Film) = launchHandledAction {
+    override fun moveFilmBackAsToBeWatched(film: Film) = launchHandledAction {
         repository.markToBeWatched(film.id)
         FilmListActionSuccess.MarkToBeWatched(film)
     }
 
-    fun moveFilmForwardAsWatched(film: Film) = launchHandledAction {
+    override fun moveFilmForwardAsWatched(film: Film) = launchHandledAction {
         repository.markWatched(film.id)
         FilmListActionSuccess.MarkWatched(film)
     }
