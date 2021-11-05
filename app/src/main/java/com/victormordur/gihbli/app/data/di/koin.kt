@@ -4,6 +4,7 @@ import android.app.Application
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
+import com.victormordur.gihbli.app.R
 import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
 import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
 import com.victormordur.gihbli.app.data.store.DatastoreContract
@@ -25,7 +26,8 @@ fun getServiceModule(httpClient: HttpClient) = module {
 }
 
 fun getDbModule(application: Application) = module {
-    single<SqlDriver> { AndroidSqliteDriver(Database.Schema, application) }
+    val dbName = application.resources.getString(R.string.db_name)
+    single<SqlDriver> { AndroidSqliteDriver(Database.Schema, application, dbName) }
     single { Database(get()) }
 }
 
