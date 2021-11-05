@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.victormordur.gihbli.app.presentation.list.navigation.FilmListNavigationItem
 
 @Composable
@@ -18,6 +19,11 @@ fun BottomNavigationBar(navController: NavController) {
         FilmListNavigationItem.WatchList,
         FilmListNavigationItem.Watched
     )
+
+    val navBackStackEntry = navController.currentBackStackEntryAsState().value
+    val currentRoute =
+        navBackStackEntry?.destination?.route ?: FilmListNavigationItem.Catalogue.route
+
     BottomNavigation(
         backgroundColor = MaterialTheme.colors.primary
     ) {
@@ -31,7 +37,7 @@ fun BottomNavigationBar(navController: NavController) {
                 },
                 label = { Text(text = stringResource(item.labelResId)) },
                 alwaysShowLabel = true,
-                selected = false,
+                selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
                         navController.graph.startDestinationRoute?.let { route ->
