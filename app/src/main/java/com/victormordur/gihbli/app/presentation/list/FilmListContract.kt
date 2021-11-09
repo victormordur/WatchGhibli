@@ -2,6 +2,7 @@ package com.victormordur.gihbli.app.presentation.list
 
 import com.victormordur.gihbli.app.data.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
+import com.victormordur.gihbli.app.presentation.common.ActionResultContract
 import kotlinx.coroutines.flow.StateFlow
 
 interface FilmListContract {
@@ -10,7 +11,8 @@ interface FilmListContract {
         val toBeWatchedContent: StateFlow<ViewState<List<Film>>>
         val watchedContent: StateFlow<ViewState<List<Film>>>
     }
-    interface Actions {
+
+    interface Actions : ActionResultContract {
         fun refreshCatalogue()
         fun addFilmToWatchList(film: Film)
         fun removeFilmFromWatchList(film: Film)

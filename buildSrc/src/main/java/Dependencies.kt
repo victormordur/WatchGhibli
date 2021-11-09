@@ -121,6 +121,8 @@ object TestingLib {
     const val KTOR_MOCK = "io.ktor:ktor-client-mock:${Versions.KTOR}"
     const val SQLDELIGHT_JVM = "com.squareup.sqldelight:sqlite-driver:${Versions.SQLDELIGHT}"
     const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
+    const val KOIN_TEST = "io.insert-koin:koin-test:${Versions.KOIN}"
+    const val KOIN_TEST_JUNIT4 = "io.insert-koin:koin-test-junit4:${Versions.KOIN}"
 }
 
 object AndroidTestingLib {
@@ -130,7 +132,10 @@ object AndroidTestingLib {
     const val ANDROIDX_TEST_CORE_KTX = "androidx.test:core-ktx:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_EXT_JUNIT = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT}"
     const val ANDROIDX_TEST_EXT_JUNIT_KTX = "androidx.test.ext:junit-ktx:${Versions.ANDROIDX_TEST_EXT}"
+    const val ANDROIDX_LIFECYCLE_RUNTIME_TESTING = "androidx.lifecycle:lifecycle-runtime-testing:${Versions.LIFECYCLE}"
     const val ANDROIDX_ARCH_CORE_TEST = "androidx.arch.core:core-testing:${Versions.ARCH_CORE}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
     const val ROBOELECTRIC = "org.robolectric:robolectric:${Versions.ROBOELECTRIC}"
+    const val ANDROIDX_COMPOSE_JUNIT4_TEST = "androidx.compose.ui:ui-test-junit4:${Versions.COMPOSE_CORE}"
+    const val ANDROIDX_COMPOSE_MANIFEST_TEST = "androidx.compose.ui:ui-test-manifest:${Versions.COMPOSE_CORE}"
 }

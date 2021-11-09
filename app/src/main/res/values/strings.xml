@@ -8,9 +8,9 @@
     <string name="remove_film_success">Film removed from Watch List</string>
     <string name="mark_to_be_watched_success">Film moved back to be Watch List</string>
     <string name="mark_watched_success">Film marked as Watched</string>
-    <string name="catalogue_list_empty">No more films available in the Catalogue</string>
-    <string name="watch_list_list_empty">No films in the Watch List yet</string>
-    <string name="watched_list_empty">No films Watched yet</string>
+    <string name="catalogue_empty">No more films available in the Catalogue</string>
+    <string name="watch_list_empty">No films in the Watch List yet</string>
+    <string name="watched_empty">No films Watched yet</string>
     <string name="empty"></string>
 
     // Error

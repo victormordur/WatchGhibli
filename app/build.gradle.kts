@@ -46,6 +46,15 @@ android {
         isAbortOnError = true
     }
 
+    packagingOptions {
+        resources.excludes.add("META-INF/DEPENDENCIES")
+        resources.excludes.add("META-INF/NOTICE")
+        resources.excludes.add("META-INF/LICENSE")
+        resources.excludes.add("META-INF/LICENSE.txt")
+        resources.excludes.add("META-INF/NOTICE.txt")
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
     // Use this block to configure different flavors
 //    flavorDimensions("version")
 //    productFlavors {
@@ -97,6 +106,9 @@ dependencies {
     implementation(SqlDelight.ANDROID_DRIVER)
     implementation(SqlDelight.COROUTINES_EXT)
 
+    implementation(TestingLib.KOIN_TEST)
+    implementation(TestingLib.KOIN_TEST_JUNIT4)
+
     testImplementation(TestingLib.JUNIT)
     testImplementation(TestingLib.MOCKK)
     testImplementation(TestingLib.KTOR_MOCK)
@@ -110,7 +122,10 @@ dependencies {
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT_KTX)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_LIFECYCLE_RUNTIME_TESTING)
     androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_COMPOSE_JUNIT4_TEST)
+    debugImplementation(AndroidTestingLib.ANDROIDX_COMPOSE_MANIFEST_TEST)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

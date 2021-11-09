@@ -38,5 +38,5 @@ fun EmptyListContent(textResId: Int) {
 @Preview(showBackground = true)
 @Composable
 fun EmptyPreview() {
-    EmptyListContent(R.string.watch_list_list_empty)
+    EmptyListContent(R.string.watch_list_empty)
 }

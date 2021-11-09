@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.victormordur.gihbli.app.R
@@ -35,50 +36,59 @@ class FilmListActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GhibliTheme {
-                val scaffoldState = rememberScaffoldState()
-                val navController = rememberNavController()
-                Scaffold(
-                    topBar = {
-                        Toolbar(title = R.string.app_name)
-                    },
-                    bottomBar = { BottomNavigationBar(navController) },
-                    scaffoldState = scaffoldState,
-                    snackbarHost = {
-                        SnackbarHost(it) { data ->
-                            when (data.actionLabel) {
-                                SnackBarType.Info.name -> {
-                                    InfoSnackBar(data = data)
-                                }
-                                SnackBarType.Error.name -> {
-                                    ErrorSnackBar(data = data)
-                                }
-                            }
+            FilmListContent(viewModel, viewModel, lifecycleScope)
+        }
+    }
+}
+
+@Composable
+fun FilmListContent(
+    contentContract: FilmListContract.Content,
+    actionsContract: FilmListContract.Actions,
+    lifecycleScope: LifecycleCoroutineScope
+) {
+    GhibliTheme {
+        val scaffoldState = rememberScaffoldState()
+        val navController = rememberNavController()
+        Scaffold(
+            topBar = {
+                Toolbar(title = R.string.app_name)
+            },
+            bottomBar = { BottomNavigationBar(navController) },
+            scaffoldState = scaffoldState,
+            snackbarHost = {
+                SnackbarHost(it) { data ->
+                    when (data.actionLabel) {
+                        SnackBarType.Info.name -> {
+                            InfoSnackBar(data = data)
+                        }
+                        SnackBarType.Error.name -> {
+                            ErrorSnackBar(data = data)
                         }
                     }
-                ) { innerPadding ->
-
-                    val actionError = viewModel.actionErrorFlow.collectAsState(initial = null)
-                    val actionResult = viewModel.actionResultFlow.collectAsState(initial = null)
-
-                    actionError.value?.let {
-                        ShowErrorSnackBar(scaffoldState, it)
-                    }
-
-                    actionResult.value?.let {
-                        ShowInfoSnackBar(scaffoldState, it)
-                    }
-
-                    Box(modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())) {
-                        FilmListNavigation(
-                            navController = navController,
-                            content = viewModel,
-                            actions = viewModel,
-                            onItemClick = { /* TODO launch item details screen */ },
-                            lifecycleScope = lifecycleScope
-                        )
-                    }
                 }
+            }
+        ) { innerPadding ->
+
+            val actionError = actionsContract.actionErrorFlow.collectAsState(initial = null)
+            val actionResult = actionsContract.actionResultFlow.collectAsState(initial = null)
+
+            actionError.value?.let {
+                ShowErrorSnackBar(scaffoldState, it)
+            }
+
+            actionResult.value?.let {
+                ShowInfoSnackBar(scaffoldState, it)
+            }
+
+            Box(modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())) {
+                FilmListNavigation(
+                    navController = navController,
+                    content = contentContract,
+                    actions = actionsContract,
+                    onItemClick = { /* TODO launch item details screen */ },
+                    lifecycleScope = lifecycleScope
+                )
             }
         }
     }

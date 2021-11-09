@@ -16,12 +16,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-abstract class CommonViewModel : ViewModel() {
+abstract class CommonViewModel : ViewModel(), ActionResultContract {
     private val actionErrorChannel: Channel<Throwable> = Channel(CONFLATED)
-    val actionErrorFlow = actionErrorChannel.receiveAsFlow()
+    override val actionErrorFlow = actionErrorChannel.receiveAsFlow()
 
     private val actionResultChannel: Channel<ActionResult> = Channel(CONFLATED)
-    val actionResultFlow = actionResultChannel.receiveAsFlow()
+    override val actionResultFlow = actionResultChannel.receiveAsFlow()
 
     protected fun <R : ActionResult> launchHandledAction(block: suspend () -> R) {
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->

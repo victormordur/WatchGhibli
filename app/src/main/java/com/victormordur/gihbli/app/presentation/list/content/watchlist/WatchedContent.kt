@@ -37,7 +37,7 @@ fun WatchedContent(
                     onItemMarkToBeWatched
                 )
             } else {
-                EmptyListContent(R.string.watched_list_empty)
+                EmptyListContent(R.string.watched_empty)
             }
         }
         is ViewState.Loading -> {

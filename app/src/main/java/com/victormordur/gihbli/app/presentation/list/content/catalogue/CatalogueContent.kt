@@ -40,7 +40,7 @@ fun CatalogueContent(
                     onItemAdd
                 )
             } else {
-                EmptyListContent(R.string.catalogue_list_empty)
+                EmptyListContent(R.string.catalogue_empty)
             }
         }
         is ViewState.Loading -> {
