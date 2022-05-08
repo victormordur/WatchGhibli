@@ -26,7 +26,7 @@ class FilmLocalDataStoreTest {
 
     private val database: Database = mockk()
     private val queries: FilmQueries = mockk()
-    private val datastore = FilmLocalDatastore(database, testCoroutineDispatcher)
+    private val datastore = FilmLocalDatastoreImpl(database, testCoroutineDispatcher)
 
     private val itemList = listOf(1, 2, 3, 4, 5)
     private val dbFilms = itemList.map {

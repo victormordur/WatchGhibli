@@ -7,9 +7,9 @@ import com.victormordur.gihbli.app.Database
 import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
 import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
 import com.victormordur.gihbli.app.data.service.remote.createHttpClient
-import com.victormordur.gihbli.app.data.store.DatastoreContract
-import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
-import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
+import com.victormordur.gihbli.app.data.store.FilmDatastore
+import com.victormordur.gihbli.app.data.store.FilmLocalDatastoreImpl
+import com.victormordur.gihbli.app.data.store.FilmRemoteDatastoreImpl
 import com.victormordur.gihbli.app.data.repository.FilmRepositoryImpl
 import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
@@ -70,12 +70,12 @@ class KoinModulesTest {
     @Test
     fun testDatastoreModuleInstances() {
         val app = startKoin { modules(koinModules) }
-        val remote: DatastoreContract.FilmRemote = app.koin.get()
-        val local: DatastoreContract.FilmLocal = app.koin.get()
+        val remote: FilmDatastore.Remote = app.koin.get()
+        val local: FilmDatastore.Local = app.koin.get()
         Assert.assertNotNull(remote)
-        Assert.assertTrue(remote is FilmRemoteDatastore)
+        Assert.assertTrue(remote is FilmRemoteDatastoreImpl)
         Assert.assertNotNull(local)
-        Assert.assertTrue(local is FilmLocalDatastore)
+        Assert.assertTrue(local is FilmLocalDatastoreImpl)
     }
 
     @Test

@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.mapLatest
 
 typealias DBFilm = gihbli.Film
 
-class FilmLocalDatastore(
+class FilmLocalDatastoreImpl(
     private val database: Database,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default
-) : DatastoreContract.FilmLocal {
+) : FilmDatastore.Local {
     override fun getAllFlow(): Flow<List<Film>> {
         return database.filmQueries.selectAll().asFlow().mapToList(dispatcher).mapLatest { list ->
             list.map { it.toFilm() }

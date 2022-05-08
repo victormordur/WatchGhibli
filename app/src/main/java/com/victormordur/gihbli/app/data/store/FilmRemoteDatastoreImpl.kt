@@ -6,11 +6,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 
-class FilmRemoteDatastore(
+class FilmRemoteDatastoreImpl(
     private val service: RemoteServiceContract.FilmService,
     dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) :
-    DatastoreContract.FilmRemote, RefreshableFlowDatastore<List<Film>>(dispatcher) {
+    FilmDatastore.Remote, RefreshableFlowDatastore<List<Film>>(dispatcher) {
 
     override suspend fun onSubscription() = service.getAllFilms()
     override suspend fun onRefresh() = service.getAllFilms()

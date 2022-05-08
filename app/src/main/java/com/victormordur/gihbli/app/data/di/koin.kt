@@ -6,9 +6,9 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
 import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
 import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
-import com.victormordur.gihbli.app.data.store.DatastoreContract
-import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
-import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
+import com.victormordur.gihbli.app.data.store.FilmDatastore
+import com.victormordur.gihbli.app.data.store.FilmLocalDatastoreImpl
+import com.victormordur.gihbli.app.data.store.FilmRemoteDatastoreImpl
 import com.victormordur.gihbli.app.data.repository.FilmRepositoryImpl
 import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
@@ -30,8 +30,8 @@ fun getDbModule(application: Application, dbName: String) = module {
 }
 
 val datastoreModule = module {
-    single<DatastoreContract.FilmRemote> { FilmRemoteDatastore(get()) }
-    single<DatastoreContract.FilmLocal> { FilmLocalDatastore(get()) }
+    single<FilmDatastore.Remote> { FilmRemoteDatastoreImpl(get()) }
+    single<FilmDatastore.Local> { FilmLocalDatastoreImpl(get()) }
 }
 
 val repositoryModule = module {
