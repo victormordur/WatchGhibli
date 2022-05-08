@@ -1,7 +1,8 @@
-package com.victormordur.gihbli.app.domain.repository
+package com.victormordur.gihbli.app.data.repository
 
 import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.data.store.DatastoreContract
+import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import kotlinx.coroutines.flow.Flow
 
 class FilmRepository(
