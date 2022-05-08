@@ -10,8 +10,8 @@ import com.victormordur.gihbli.app.data.service.remote.createHttpClient
 import com.victormordur.gihbli.app.data.store.DatastoreContract
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
-import com.victormordur.gihbli.app.data.repository.FilmRepository
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.data.repository.FilmRepositoryImpl
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
@@ -81,9 +81,9 @@ class KoinModulesTest {
     @Test
     fun testRepositoryModuleInstances() {
         val app = startKoin { modules(koinModules) }
-        val repository: FilmRepositoryContract = app.koin.get()
+        val repository: FilmRepository = app.koin.get()
         Assert.assertNotNull(repository)
-        Assert.assertTrue(repository is FilmRepository)
+        Assert.assertTrue(repository is FilmRepositoryImpl)
     }
 
     @Test

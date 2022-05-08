@@ -14,10 +14,10 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Test
 
-class FilmRepositoryTest {
+class FilmRepositoryImplTest {
     private val remoteDatastore: DatastoreContract.FilmRemote = mockk()
     private val localDatastore: DatastoreContract.FilmLocal = mockk()
-    private val repository = FilmRepository(remoteDatastore, localDatastore)
+    private val repository = FilmRepositoryImpl(remoteDatastore, localDatastore)
 
     private val films = listOf(1, 2, 3, 4, 5).map {
         Film(

@@ -9,8 +9,8 @@ import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
 import com.victormordur.gihbli.app.data.store.DatastoreContract
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
-import com.victormordur.gihbli.app.data.repository.FilmRepository
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.data.repository.FilmRepositoryImpl
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
@@ -35,7 +35,7 @@ val datastoreModule = module {
 }
 
 val repositoryModule = module {
-    single<FilmRepositoryContract> { FilmRepository(get(), get()) }
+    single<FilmRepository> { FilmRepositoryImpl(get(), get()) }
 }
 
 val useCaseModule = module {

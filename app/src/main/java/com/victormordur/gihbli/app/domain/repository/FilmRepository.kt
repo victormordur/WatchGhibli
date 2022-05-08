@@ -3,7 +3,7 @@ package com.victormordur.gihbli.app.domain.repository
 import com.victormordur.gihbli.app.domain.model.Film
 import kotlinx.coroutines.flow.Flow
 
-interface FilmRepositoryContract {
+interface FilmRepository {
     fun getCatalogueFilmsFlow(): Flow<List<Film>>
     suspend fun refreshCatalogueFilms()
     fun getUserFilmsFlow(): Flow<List<Film>>

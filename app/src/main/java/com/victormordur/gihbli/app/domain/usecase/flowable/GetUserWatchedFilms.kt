@@ -1,8 +1,8 @@
 package com.victormordur.gihbli.app.domain.usecase.flowable
 
 import com.victormordur.gihbli.app.domain.model.Film
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 
-class GetUserWatchedFilms(repository: FilmRepositoryContract) : GetUserFilteredFilms(repository) {
+class GetUserWatchedFilms(repository: FilmRepository) : GetUserFilteredFilms(repository) {
     override fun evaluateCondition(film: Film) = film.watched
 }

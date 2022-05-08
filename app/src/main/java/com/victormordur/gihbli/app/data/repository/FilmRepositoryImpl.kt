@@ -2,13 +2,13 @@ package com.victormordur.gihbli.app.data.repository
 
 import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.data.store.DatastoreContract
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import kotlinx.coroutines.flow.Flow
 
-class FilmRepository(
+class FilmRepositoryImpl(
     private val remote: DatastoreContract.FilmRemote,
     private val local: DatastoreContract.FilmLocal
-) : FilmRepositoryContract {
+) : FilmRepository {
     override fun getCatalogueFilmsFlow(): Flow<List<Film>> {
         return remote.getAllFilmsFlow()
     }

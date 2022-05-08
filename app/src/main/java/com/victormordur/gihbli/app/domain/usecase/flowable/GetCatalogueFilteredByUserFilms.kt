@@ -1,12 +1,12 @@
 package com.victormordur.gihbli.app.domain.usecase.flowable
 
 import com.victormordur.gihbli.app.domain.model.Film
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.FlowableUseCase
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 
-class GetCatalogueFilteredByUserFilms(private val repository: FilmRepositoryContract) :
+class GetCatalogueFilteredByUserFilms(private val repository: FilmRepository) :
     FlowableUseCase<List<Film>> {
     override fun requestFlow() =
         combine(
