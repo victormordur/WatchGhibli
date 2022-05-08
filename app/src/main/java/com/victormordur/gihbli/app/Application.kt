@@ -1,12 +1,12 @@
 package com.victormordur.gihbli.app
 
 import android.app.Application
-import com.victormordur.gihbli.app.data.di.datastoreModule
-import com.victormordur.gihbli.app.data.di.getDbModule
-import com.victormordur.gihbli.app.data.di.getServiceModule
-import com.victormordur.gihbli.app.data.di.repositoryModule
-import com.victormordur.gihbli.app.data.di.useCaseModule
-import com.victormordur.gihbli.app.data.di.viewModelModule
+import com.victormordur.gihbli.app.di.datastoreModule
+import com.victormordur.gihbli.app.di.getDbModule
+import com.victormordur.gihbli.app.di.getServiceModule
+import com.victormordur.gihbli.app.di.repositoryModule
+import com.victormordur.gihbli.app.di.useCaseModule
+import com.victormordur.gihbli.app.di.viewModelModule
 import com.victormordur.gihbli.app.data.service.remote.createHttpClient
 import org.koin.core.context.startKoin
 import timber.log.Timber

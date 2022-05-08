@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.data.di
+package com.victormordur.gihbli.app.di
 
 import android.app.Application
 import com.squareup.sqldelight.android.AndroidSqliteDriver
