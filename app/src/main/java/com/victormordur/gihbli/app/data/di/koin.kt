@@ -4,8 +4,8 @@ import android.app.Application
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
-import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
+import com.victormordur.gihbli.app.data.service.remote.FilmServiceGihbliImpl
+import com.victormordur.gihbli.app.data.service.remote.FilmService
 import com.victormordur.gihbli.app.data.store.FilmDatastore
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastoreImpl
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastoreImpl
@@ -21,7 +21,7 @@ import org.koin.dsl.module
 
 fun getServiceModule(httpClient: HttpClient) = module {
     single { httpClient }
-    single<RemoteServiceContract.FilmService> { RemoteGihbliService(get()) }
+    single<FilmService> { FilmServiceGihbliImpl(get()) }
 }
 
 fun getDbModule(application: Application, dbName: String) = module {

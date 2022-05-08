@@ -1,7 +1,7 @@
 package com.victormordur.gihbli.app.data.service
 
 import com.victormordur.gihbli.app.domain.model.Film
-import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
+import com.victormordur.gihbli.app.data.service.remote.FilmServiceGihbliImpl
 import com.victormordur.gihbli.app.data.service.remote.commonJsonSerializer
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
@@ -17,7 +17,7 @@ import kotlinx.serialization.json.Json
 import org.junit.Assert
 import org.junit.Test
 
-class RemoteGihbliServiceTest {
+class FilmServiceGihbliImplTest {
 
     companion object {
         val jsonParser = Json { encodeDefaults = true }
@@ -31,7 +31,7 @@ class RemoteGihbliServiceTest {
             Film("id3", "title3", "description3", "date3", "director3", "imageURL3")
         )
 
-        val service = RemoteGihbliService(
+        val service = FilmServiceGihbliImpl(
             HttpClient(MockEngine) {
                 install(JsonFeature) {
                     serializer = commonJsonSerializer

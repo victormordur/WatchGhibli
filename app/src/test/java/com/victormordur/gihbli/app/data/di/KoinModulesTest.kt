@@ -4,8 +4,8 @@ import androidx.test.core.app.ApplicationProvider
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
-import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
+import com.victormordur.gihbli.app.data.service.remote.FilmServiceGihbliImpl
+import com.victormordur.gihbli.app.data.service.remote.FilmService
 import com.victormordur.gihbli.app.data.service.remote.createHttpClient
 import com.victormordur.gihbli.app.data.store.FilmDatastore
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastoreImpl
@@ -50,10 +50,10 @@ class KoinModulesTest {
     fun testServiceModuleInstances() {
         val app = startKoin { modules(koinModules) }
         val httpClient: HttpClient = app.koin.get()
-        val gihbliService: RemoteServiceContract.FilmService = app.koin.get()
+        val gihbliService: FilmService = app.koin.get()
         Assert.assertNotNull(httpClient)
         Assert.assertNotNull(gihbliService)
-        Assert.assertTrue(gihbliService is RemoteGihbliService)
+        Assert.assertTrue(gihbliService is FilmServiceGihbliImpl)
     }
 
     @Test
