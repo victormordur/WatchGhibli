@@ -1,16 +1,16 @@
-package com.victormordur.gihbli.app.data.di
+package com.victormordur.gihbli.app.di
 
 import android.app.Application
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
-import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
-import com.victormordur.gihbli.app.data.store.DatastoreContract
-import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
-import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
+import com.victormordur.gihbli.app.data.repository.FilmRepositoryImpl
+import com.victormordur.gihbli.app.data.service.FilmService
+import com.victormordur.gihbli.app.data.service.FilmServiceGihbliImpl
+import com.victormordur.gihbli.app.data.store.FilmDatastore
+import com.victormordur.gihbli.app.data.store.FilmLocalDatastoreImpl
+import com.victormordur.gihbli.app.data.store.FilmRemoteDatastoreImpl
 import com.victormordur.gihbli.app.domain.repository.FilmRepository
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
@@ -21,7 +21,7 @@ import org.koin.dsl.module
 
 fun getServiceModule(httpClient: HttpClient) = module {
     single { httpClient }
-    single<RemoteServiceContract.FilmService> { RemoteGihbliService(get()) }
+    single<FilmService> { FilmServiceGihbliImpl(get()) }
 }
 
 fun getDbModule(application: Application, dbName: String) = module {
@@ -30,12 +30,12 @@ fun getDbModule(application: Application, dbName: String) = module {
 }
 
 val datastoreModule = module {
-    single<DatastoreContract.FilmRemote> { FilmRemoteDatastore(get()) }
-    single<DatastoreContract.FilmLocal> { FilmLocalDatastore(get()) }
+    single<FilmDatastore.Remote> { FilmRemoteDatastoreImpl(get()) }
+    single<FilmDatastore.Local> { FilmLocalDatastoreImpl(get()) }
 }
 
 val repositoryModule = module {
-    single<FilmRepositoryContract> { FilmRepository(get(), get()) }
+    single<FilmRepository> { FilmRepositoryImpl(get(), get()) }
 }
 
 val useCaseModule = module {

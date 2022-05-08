@@ -1,11 +1,10 @@
-package com.victormordur.gihbli.app.data.service.remote
+package com.victormordur.gihbli.app.data.service
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 
-class RemoteGihbliService(private val client: HttpClient) :
-    RemoteServiceContract.FilmService {
+class FilmServiceGihbliImpl(private val client: HttpClient) : FilmService {
 
     companion object {
         const val baseUrl = "https://ghibliapi.herokuapp.com"

@@ -1,6 +1,6 @@
 package com.victormordur.gihbli.app.presentation.list.content.item
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 
 data class FilmListItemButtonConfig(
     val imageResId: Int,

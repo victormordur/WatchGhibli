@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.data.model
+package com.victormordur.gihbli.app.domain.model
 
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

@@ -1,7 +1,7 @@
 package com.victormordur.gihbli.app.domain.usecase
 
-import com.victormordur.gihbli.app.data.model.Film
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.domain.model.Film
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
@@ -18,7 +18,7 @@ import org.junit.Assert
 import org.junit.Test
 
 class FilmFlowableUseCasesTest {
-    private val repository: FilmRepositoryContract = mockk()
+    private val repository: FilmRepository = mockk()
     private val getCatalogueFiltered = GetCatalogueFilteredByUserFilms(repository)
     private val getUserToBeWatched = GetUserToBeWatchedFilms(repository)
     private val getUserWatched = GetUserWatchedFilms(repository)

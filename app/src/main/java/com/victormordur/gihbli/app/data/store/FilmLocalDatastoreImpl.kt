@@ -3,7 +3,7 @@ package com.victormordur.gihbli.app.data.store
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.mapLatest
 
 typealias DBFilm = gihbli.Film
 
-class FilmLocalDatastore(
+class FilmLocalDatastoreImpl(
     private val database: Database,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default
-) : DatastoreContract.FilmLocal {
+) : FilmDatastore.Local {
     override fun getAllFlow(): Flow<List<Film>> {
         return database.filmQueries.selectAll().asFlow().mapToList(dispatcher).mapLatest { list ->
             list.map { it.toFilm() }

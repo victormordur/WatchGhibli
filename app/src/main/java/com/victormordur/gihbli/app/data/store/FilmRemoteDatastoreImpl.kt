@@ -1,16 +1,16 @@
 package com.victormordur.gihbli.app.data.store
 
-import com.victormordur.gihbli.app.data.model.Film
-import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
+import com.victormordur.gihbli.app.data.service.FilmService
+import com.victormordur.gihbli.app.domain.model.Film
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 
-class FilmRemoteDatastore(
-    private val service: RemoteServiceContract.FilmService,
+class FilmRemoteDatastoreImpl(
+    private val service: FilmService,
     dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) :
-    DatastoreContract.FilmRemote, RefreshableFlowDatastore<List<Film>>(dispatcher) {
+    FilmDatastore.Remote, RefreshableFlowDatastore<List<Film>>(dispatcher) {
 
     override suspend fun onSubscription() = service.getAllFilms()
     override suspend fun onRefresh() = service.getAllFilms()

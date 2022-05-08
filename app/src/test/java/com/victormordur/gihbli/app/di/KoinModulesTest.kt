@@ -1,17 +1,17 @@
-package com.victormordur.gihbli.app.data.di
+package com.victormordur.gihbli.app.di
 
 import androidx.test.core.app.ApplicationProvider
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
-import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
-import com.victormordur.gihbli.app.data.service.remote.createHttpClient
-import com.victormordur.gihbli.app.data.store.DatastoreContract
-import com.victormordur.gihbli.app.data.store.FilmLocalDatastore
-import com.victormordur.gihbli.app.data.store.FilmRemoteDatastore
+import com.victormordur.gihbli.app.data.repository.FilmRepositoryImpl
+import com.victormordur.gihbli.app.data.service.FilmService
+import com.victormordur.gihbli.app.data.service.FilmServiceGihbliImpl
+import com.victormordur.gihbli.app.data.service.createHttpClient
+import com.victormordur.gihbli.app.data.store.FilmDatastore
+import com.victormordur.gihbli.app.data.store.FilmLocalDatastoreImpl
+import com.victormordur.gihbli.app.data.store.FilmRemoteDatastoreImpl
 import com.victormordur.gihbli.app.domain.repository.FilmRepository
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
@@ -50,10 +50,10 @@ class KoinModulesTest {
     fun testServiceModuleInstances() {
         val app = startKoin { modules(koinModules) }
         val httpClient: HttpClient = app.koin.get()
-        val gihbliService: RemoteServiceContract.FilmService = app.koin.get()
+        val gihbliService: FilmService = app.koin.get()
         Assert.assertNotNull(httpClient)
         Assert.assertNotNull(gihbliService)
-        Assert.assertTrue(gihbliService is RemoteGihbliService)
+        Assert.assertTrue(gihbliService is FilmServiceGihbliImpl)
     }
 
     @Test
@@ -70,20 +70,20 @@ class KoinModulesTest {
     @Test
     fun testDatastoreModuleInstances() {
         val app = startKoin { modules(koinModules) }
-        val remote: DatastoreContract.FilmRemote = app.koin.get()
-        val local: DatastoreContract.FilmLocal = app.koin.get()
+        val remote: FilmDatastore.Remote = app.koin.get()
+        val local: FilmDatastore.Local = app.koin.get()
         Assert.assertNotNull(remote)
-        Assert.assertTrue(remote is FilmRemoteDatastore)
+        Assert.assertTrue(remote is FilmRemoteDatastoreImpl)
         Assert.assertNotNull(local)
-        Assert.assertTrue(local is FilmLocalDatastore)
+        Assert.assertTrue(local is FilmLocalDatastoreImpl)
     }
 
     @Test
     fun testRepositoryModuleInstances() {
         val app = startKoin { modules(koinModules) }
-        val repository: FilmRepositoryContract = app.koin.get()
+        val repository: FilmRepository = app.koin.get()
         Assert.assertNotNull(repository)
-        Assert.assertTrue(repository is FilmRepository)
+        Assert.assertTrue(repository is FilmRepositoryImpl)
     }
 
     @Test

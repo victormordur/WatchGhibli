@@ -2,7 +2,7 @@ package com.victormordur.gihbli.app.data.store
 
 import com.squareup.sqldelight.Query
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import gihbli.FilmQueries
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -26,7 +26,7 @@ class FilmLocalDataStoreTest {
 
     private val database: Database = mockk()
     private val queries: FilmQueries = mockk()
-    private val datastore = FilmLocalDatastore(database, testCoroutineDispatcher)
+    private val datastore = FilmLocalDatastoreImpl(database, testCoroutineDispatcher)
 
     private val itemList = listOf(1, 2, 3, 4, 5)
     private val dbFilms = itemList.map {

@@ -1,7 +1,7 @@
-package com.victormordur.gihbli.app.domain.repository
+package com.victormordur.gihbli.app.data.repository
 
-import com.victormordur.gihbli.app.data.model.Film
-import com.victormordur.gihbli.app.data.store.DatastoreContract
+import com.victormordur.gihbli.app.data.store.FilmDatastore
+import com.victormordur.gihbli.app.domain.model.Film
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -14,10 +14,10 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Test
 
-class FilmRepositoryTest {
-    private val remoteDatastore: DatastoreContract.FilmRemote = mockk()
-    private val localDatastore: DatastoreContract.FilmLocal = mockk()
-    private val repository = FilmRepository(remoteDatastore, localDatastore)
+class FilmRepositoryImplTest {
+    private val remoteDatastore: FilmDatastore.Remote = mockk()
+    private val localDatastore: FilmDatastore.Local = mockk()
+    private val repository = FilmRepositoryImpl(remoteDatastore, localDatastore)
 
     private val films = listOf(1, 2, 3, 4, 5).map {
         Film(

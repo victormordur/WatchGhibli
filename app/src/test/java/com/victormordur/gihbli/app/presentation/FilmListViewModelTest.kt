@@ -1,8 +1,8 @@
 package com.victormordur.gihbli.app.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.victormordur.gihbli.app.data.model.Film
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.domain.model.Film
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
@@ -33,7 +33,7 @@ import org.junit.Test
 class FilmListViewModelTest {
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
 
-    private val repository: FilmRepositoryContract = mockk()
+    private val repository: FilmRepository = mockk()
     private val getCatalogueFiltered: GetCatalogueFilteredByUserFilms = mockk()
     private val getUserToBeWatched: GetUserToBeWatchedFilms = mockk()
     private val getUserWatched: GetUserWatchedFilms = mockk()

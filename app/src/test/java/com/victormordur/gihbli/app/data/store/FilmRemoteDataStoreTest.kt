@@ -1,7 +1,7 @@
 package com.victormordur.gihbli.app.data.store
 
-import com.victormordur.gihbli.app.data.model.Film
-import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
+import com.victormordur.gihbli.app.data.service.FilmService
+import com.victormordur.gihbli.app.domain.model.Film
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
@@ -18,8 +18,8 @@ import org.junit.Test
 class FilmRemoteDataStoreTest {
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
 
-    private val service: RemoteServiceContract.FilmService = mockk()
-    private val datastore = FilmRemoteDatastore(service, testCoroutineDispatcher)
+    private val service: FilmService = mockk()
+    private val datastore = FilmRemoteDatastoreImpl(service, testCoroutineDispatcher)
 
     private val films = listOf(1, 2, 3, 4, 5).map {
         Film(

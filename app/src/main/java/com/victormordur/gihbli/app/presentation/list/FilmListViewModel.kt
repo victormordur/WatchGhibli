@@ -1,8 +1,8 @@
 package com.victormordur.gihbli.app.presentation.list
 
 import com.victormordur.gihbli.app.R
-import com.victormordur.gihbli.app.data.model.Film
-import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
+import com.victormordur.gihbli.app.domain.model.Film
+import com.victormordur.gihbli.app.domain.repository.FilmRepository
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetCatalogueFilteredByUserFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserToBeWatchedFilms
 import com.victormordur.gihbli.app.domain.usecase.flowable.GetUserWatchedFilms
@@ -12,7 +12,7 @@ import com.victormordur.gihbli.app.presentation.common.CommonViewModel
 import kotlinx.coroutines.flow.StateFlow
 
 class FilmListViewModel(
-    private val repository: FilmRepositoryContract,
+    private val repository: FilmRepository,
     getCatalogueFilteredByUserFilms: GetCatalogueFilteredByUserFilms,
     getUserToBeWatchedFilms: GetUserToBeWatchedFilms,
     getUserWatchedFilms: GetUserWatchedFilms
