@@ -1,7 +1,7 @@
 package com.victormordur.gihbli.app.data.store
 
-import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.data.service.FilmService
+import com.victormordur.gihbli.app.domain.model.Film
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
