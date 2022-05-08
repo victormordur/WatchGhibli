@@ -1,6 +1,6 @@
 package com.victormordur.gihbli.app.domain.usecase.flowable
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.domain.repository.FilmRepositoryContract
 import com.victormordur.gihbli.app.domain.usecase.FlowableUseCase
 import kotlinx.coroutines.flow.mapLatest

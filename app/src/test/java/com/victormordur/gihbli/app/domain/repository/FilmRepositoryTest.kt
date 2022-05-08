@@ -1,6 +1,6 @@
 package com.victormordur.gihbli.app.domain.repository
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.data.store.DatastoreContract
 import io.mockk.Runs
 import io.mockk.coEvery

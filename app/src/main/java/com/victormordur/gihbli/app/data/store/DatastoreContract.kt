@@ -1,6 +1,6 @@
 package com.victormordur.gihbli.app.data.store
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import kotlinx.coroutines.flow.Flow
 
 interface DatastoreContract {

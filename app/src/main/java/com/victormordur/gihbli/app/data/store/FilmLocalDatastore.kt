@@ -3,7 +3,7 @@ package com.victormordur.gihbli.app.data.store
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

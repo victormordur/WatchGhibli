@@ -1,6 +1,6 @@
 package com.victormordur.gihbli.app.data.service.remote
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 
 interface RemoteServiceContract {
     interface FilmService {

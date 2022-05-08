@@ -1,6 +1,6 @@
 package com.victormordur.gihbli.app.data.store
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.data.service.remote.RemoteServiceContract
 import io.mockk.coEvery
 import io.mockk.coVerify

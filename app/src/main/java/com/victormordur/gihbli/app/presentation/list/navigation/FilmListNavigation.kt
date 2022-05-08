@@ -5,7 +5,7 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.presentation.list.FilmListContract
 import com.victormordur.gihbli.app.presentation.list.content.catalogue.CatalogueContent
 import com.victormordur.gihbli.app.presentation.list.content.watched.WatchListContent

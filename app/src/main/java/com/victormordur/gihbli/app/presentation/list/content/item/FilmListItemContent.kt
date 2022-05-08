@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.presentation.style.Dimensions
 import com.victormordur.gihbli.app.presentation.view.composable.FilmListCard
 import com.victormordur.gihbli.app.presentation.view.composable.FilmListItemButton

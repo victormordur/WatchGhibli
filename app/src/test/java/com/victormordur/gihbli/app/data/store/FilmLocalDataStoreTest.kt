@@ -2,7 +2,7 @@ package com.victormordur.gihbli.app.data.store
 
 import com.squareup.sqldelight.Query
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import gihbli.FilmQueries
 import io.mockk.Runs
 import io.mockk.coEvery

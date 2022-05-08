@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.victormordur.gihbli.app.R
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.presentation.ViewState
 import com.victormordur.gihbli.app.presentation.list.content.empty.EmptyListContent
 import com.victormordur.gihbli.app.presentation.list.content.error.ErrorListContent

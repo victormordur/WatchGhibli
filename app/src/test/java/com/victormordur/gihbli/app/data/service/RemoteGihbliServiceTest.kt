@@ -1,6 +1,6 @@
 package com.victormordur.gihbli.app.data.service
 
-import com.victormordur.gihbli.app.data.model.Film
+import com.victormordur.gihbli.app.domain.model.Film
 import com.victormordur.gihbli.app.data.service.remote.RemoteGihbliService
 import com.victormordur.gihbli.app.data.service.remote.commonJsonSerializer
 import io.ktor.client.HttpClient
