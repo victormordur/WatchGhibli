@@ -7,7 +7,7 @@ import com.victormordur.gihbli.app.di.getServiceModule
 import com.victormordur.gihbli.app.di.repositoryModule
 import com.victormordur.gihbli.app.di.useCaseModule
 import com.victormordur.gihbli.app.di.viewModelModule
-import com.victormordur.gihbli.app.data.service.remote.createHttpClient
+import com.victormordur.gihbli.app.data.service.createHttpClient
 import org.koin.core.context.startKoin
 import timber.log.Timber
 

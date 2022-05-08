@@ -1,8 +1,6 @@
 package com.victormordur.gihbli.app.data.service
 
 import com.victormordur.gihbli.app.domain.model.Film
-import com.victormordur.gihbli.app.data.service.remote.FilmServiceGihbliImpl
-import com.victormordur.gihbli.app.data.service.remote.commonJsonSerializer
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond

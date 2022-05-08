@@ -4,8 +4,8 @@ import android.app.Application
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import com.victormordur.gihbli.app.Database
-import com.victormordur.gihbli.app.data.service.remote.FilmServiceGihbliImpl
-import com.victormordur.gihbli.app.data.service.remote.FilmService
+import com.victormordur.gihbli.app.data.service.FilmServiceGihbliImpl
+import com.victormordur.gihbli.app.data.service.FilmService
 import com.victormordur.gihbli.app.data.store.FilmDatastore
 import com.victormordur.gihbli.app.data.store.FilmLocalDatastoreImpl
 import com.victormordur.gihbli.app.data.store.FilmRemoteDatastoreImpl

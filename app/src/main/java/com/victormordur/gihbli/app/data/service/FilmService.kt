@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.data.service.remote
+package com.victormordur.gihbli.app.data.service
 
 import com.victormordur.gihbli.app.domain.model.Film
 

@@ -1,4 +1,4 @@
-package com.victormordur.gihbli.app.data.service.remote
+package com.victormordur.gihbli.app.data.service
 
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature

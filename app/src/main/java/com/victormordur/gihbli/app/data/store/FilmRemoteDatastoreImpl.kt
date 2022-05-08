@@ -1,7 +1,7 @@
 package com.victormordur.gihbli.app.data.store
 
 import com.victormordur.gihbli.app.domain.model.Film
-import com.victormordur.gihbli.app.data.service.remote.FilmService
+import com.victormordur.gihbli.app.data.service.FilmService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
